@@ -1,7 +1,10 @@
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import express from "express";
-import { check, validationResult } from "express-validator";
+import { check, header, validationResult } from "express-validator";
 import { db } from "./db";
+
+export const router = express.Router();
 
 const nameValidatorChain = check("name")
 	.notEmpty()
@@ -17,11 +20,85 @@ const passwordValidatorChain = check("password")
 	.withMessage("Password Must Contain an Uppercase Letter")
 	.trim()
 	.escape();
-const validatorChain = [nameValidatorChain, passwordValidatorChain];
+const jwtValidatorChain = header("authorization")
+	.notEmpty()
+	.withMessage("Missing jwt token")
+	.customSanitizer((value) =>
+		value.startsWith("Bearer ") ? value.slice(7) : value,
+	)
+	.custom(async (token, { req }) => {
+		if (!token) {
+			throw new Error("Missing jwt token");
+		}
 
-export const router = express.Router();
+		var id = null;
+		try {
+			id = jwt.verify(token, process.env.JWT_SECRET).id;
+		} catch (error) {
+			if (error.name === "TokenExpiredError") {
+				throw new Error("Jwt token has expired");
+			}
+			throw new Error("Invalid Jwt token");
+		}
 
-router.post("/register", validatorChain, async (req, res) => {
+		if (id != null && (await db.user.findUnique({ where: { id } })) == null) {
+			throw new Error("User no longer exists");
+		}
+	});
+
+router.post(
+	"/register",
+	[nameValidatorChain, passwordValidatorChain],
+	async (req, res) => {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(422).send(
+				errors
+					.array()
+					.map((x) => x.msg)
+					.join("\n") + "\n",
+			);
+		}
+
+		const { name, password } = req.body;
+		const user = await db.user.findUnique({ where: { name } });
+
+		if (user != null) {
+			res.send("Name already taken\n");
+		} else {
+			const hashed = bcrypt.hashSync(password, 12);
+			await db.user.create({ data: { name, password: hashed } });
+
+			res.send(`User ${name} successfully created\n`);
+		}
+	},
+);
+
+router.post(
+	"/login",
+	[nameValidatorChain, passwordValidatorChain],
+	async (req, res) => {
+		const errors = validationResult(req);
+
+		if (errors.isEmpty()) {
+			const { name, password } = req.body;
+			const user = await db.user.findUnique({ where: { name } });
+
+			if (user != null) {
+				if (await bcrypt.compareSync(password, user.password)) {
+					const jwtToken = jwt.sign(user, process.env.JWT_SECRET, {
+						expiresIn: "1h",
+					});
+					return res.json(jwtToken);
+				}
+			}
+		}
+
+		res.status(422).send("Invalid credentials\n");
+	},
+);
+
+router.post("/unregister", [jwtValidatorChain], async (req, res) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
 		return res.status(422).send(
@@ -32,36 +109,12 @@ router.post("/register", validatorChain, async (req, res) => {
 		);
 	}
 
-	const { name, password } = req.body;
-
-	const user = await db.user.findUnique({ where: { name } });
-
-	if (user != null) {
-		res.send("Name already taken\n");
-	} else {
-		const hashed = bcrypt.hashSync(password, 12);
-		await db.user.create({ data: { name, password: hashed } });
-		res.send(`User ${name} successfully created\n`);
-	}
+	const { id, role } = jwt.verify(
+		req.headers.authorization,
+		process.env.JWT_SECRET,
+	);
+	await db.user.delete({ where: { id } });
+	res.send("Successfully removed user\n");
 });
-
-router.post("/login", validatorChain, async (req, res) => {
-	const errors = validationResult(req);
-
-  if (errors.isEmpty()) {
-    const { name, password } = req.body;
-    const user = await db.user.findUnique({ where: { name } });
-
-    if (user != null) {
-      if (await bcrypt.compareSync(password, user.password)) {
-        return res.send(`Successfully logged in to user ${name}\n`);
-      }
-    }
-  }
-
-  res.send("Invalid credentials\n");
-});
-
-// app.post('/unregister', []
 
 // app.get('/transactions')

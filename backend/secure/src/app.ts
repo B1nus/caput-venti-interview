@@ -18,7 +18,3 @@ const options = {
 https.createServer(options, app).listen(port, () => {
 	console.log(`Listening on https://localhost:${port}/`);
 });
-
-async function getUser(name: string): string {
-	return await prisma.user.findUnique({ where: { name } });
-}
