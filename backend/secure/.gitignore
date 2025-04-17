@@ -5,3 +5,5 @@ node_modules
 generated/prisma/
 # Don't include ssl keys
 cert/
+# Don't include audit log
+audit.log
