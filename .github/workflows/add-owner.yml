@@ -1,0 +1,38 @@
+name: Add Original Owner
+
+on:
+  create:
+    branches: [ main, master ]
+
+jobs:
+  add-owner:
+    runs-on: ubuntu-latest
+    # Only run on repositories created from this template
+    if: github.event.repository.is_template == false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Add original owner as collaborator
+        uses: actions/github-script@v6
+        with:
+          # Use GITHUB_TOKEN for most operations
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = 'StAmirey'; // Replace with your GitHub username
+            const repo = context.repo.repo;
+            const permission = 'read'; // or 'write', 'admin'
+            
+            try {
+              // Create issue to notify about the collaboration
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: repo,
+                title: 'Template Repository Notice',
+                body: `This repository was created from @${owner}'s template repository. As the template owner, they would typically be automatically added as a collaborator with read access.\n\nHowever, due to GitHub's permission restrictions, this needs to be done manually. If you wish to add them as a collaborator, you can do so in your repository settings.`
+              });
+              
+              console.log(`Created notification issue in ${context.repo.owner}/${repo}`);
+            } catch (error) {
+              console.error(`Error creating issue: ${error}`);
+            } 
