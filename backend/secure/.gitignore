@@ -3,3 +3,5 @@ node_modules
 .env
 # Keep generated prisma files out of version control
 generated/prisma/
+# Don't include ssl keys
+cert/
