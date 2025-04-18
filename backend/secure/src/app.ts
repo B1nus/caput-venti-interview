@@ -5,8 +5,11 @@ import express from "express";
 import { db } from "./db";
 import { logger } from "./middleware/logger";
 import { userRouter } from "./routes/user";
+import { adminRouter } from "./routes/admin";
 import { authRouter } from "./routes/auth";
+import { tokenValidator } from "./middleware/jwt";
 import { jsonValidator } from "./middleware/json";
+import { roleValidator } from "./middleware/role";
 
 const app = express();
 
@@ -17,10 +20,19 @@ var only = function(middleware, ...paths) {
   };
 };
 
+var unless = function(middleware, ...paths) {
+  return function(req, res, next) {
+    const pathCheck = paths.some(path => path === req.path);
+    pathCheck ? next() : middleware(req, res, next);
+  };
+};
+
 app.use(jsonValidator);
 app.use(only(logger, '/register', '/login', '/unregister'));
-app.use(only(userRouter, '/unregister'));
 app.use(authRouter);
+app.use(tokenValidator);
+app.use(userRouter);
+app.use(adminRouter);
 
 const options = {
 	key: fs.readFileSync("../cert/key.pem"),

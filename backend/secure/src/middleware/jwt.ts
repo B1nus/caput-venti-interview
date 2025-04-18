@@ -3,8 +3,7 @@ import jwt from "jsonwebtoken";
 
 export const tokenValidator = async (req, res, next) => {
   if (!req.headers.authorization) {
-    res.status(400).json({ error: "Missing authentication token" });
-    return next('route');
+    return res.status(400).json({ error: "Missing authentication token" });
   }
 
   const auth = req.headers.authorization;
@@ -17,17 +16,15 @@ export const tokenValidator = async (req, res, next) => {
       res.decoded = { id, role };
       next();
     } else {
-      res.status(410).json({ error: "User does not exists" });
-      next('route');
+      return res.status(410).json({ error: "User does not exists" });
     }
   } catch (error) {
     if (error.name === "TokenExpiredError") {
-      res.status(401).json({ error: "Authentication token expired" });
+      return res.status(401).json({ error: "Authentication token expired" });
     } else if (error.name === "NotBeforeError") {
-      res.status(400).json({ error: "Bogus authentication token date" });
+      return res.status(400).json({ error: "Bogus authentication token date" });
     } else {
-      res.status(400).json({ error: "Invalid authentication token" });
+      return res.status(400).json({ error: "Invalid authentication token" });
     }
-    next('route');
   }
 };

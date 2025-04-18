@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import express from "express";
 import { check, header, validationResult } from "express-validator";
 import { db } from "../db";
+import { Role } from "../../generated/prisma/client";
 
 export const authRouter = express.Router();
 
@@ -30,8 +31,7 @@ authRouter.post(
 	async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(400).json({ error: errors.array().map(x => x.msg) });
-      return next();
+      return res.status(400).json({ error: errors.array().map(x => x.msg) });
     }
 
 		const { name, password } = req.body;
@@ -43,9 +43,8 @@ authRouter.post(
 			const hashed = bcrypt.hashSync(password, 12);
 			await db.user.create({ data: { name, password: hashed } });
 
-			res.status(200).end();
+			return res.status(200).end();
 		}
-    next();
 	},
 );
 
@@ -65,15 +64,13 @@ authRouter.post(
 					const jwtToken = jwt.sign(user, process.env.JWT_SECRET, {
 						expiresIn: process.env.JWT_EXPIRATION_TIME,
 					});
-					res.status(200).json({
+					return res.status(200).json({
             token: jwtToken,
           });
-          return next();
 				}
 			}
 		}
 
-		res.status(400).json({ error: "Invalid credentials" });
-    next();
+		return res.status(400).json({ error: "Invalid credentials" });
 	},
 );
