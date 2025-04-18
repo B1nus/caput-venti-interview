@@ -1,4 +1,4 @@
-import { db } from "./db";
+import { db } from "../db";
 import jwt from "jsonwebtoken";
 
 export const tokenValidator = async (req, res, next) => {

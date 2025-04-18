@@ -1,12 +1,10 @@
-import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken"; // might be better to have this dependency elsewhere.
 import bcrypt from "bcrypt";
 import express from "express";
 import { check, header, validationResult } from "express-validator";
-import { db } from "./db";
-import { tokenValidator } from "./tokenValidator";
+import { db } from "../db";
 
-export const router = express.Router();
-export const userRouter = express.Router();
+export const authRouter = express.Router();
 
 const nameValidatorChain = check("name")
 	.notEmpty()
@@ -14,28 +12,30 @@ const nameValidatorChain = check("name")
 	.trim()
 	.escape();
 const passwordValidatorChain = check("password")
+	.notEmpty()
+	.withMessage("Password must not be empty")
 	.isLength({ min: 8 })
-	.withMessage("Password Must Be at Least 8 Characters")
+	.withMessage("Password must be at least 8 characters")
 	.matches("[0-9]")
-	.withMessage("Password Must Contain a Number")
+	.withMessage("Password must contain a number")
 	.matches("[A-Z]")
-	.withMessage("Password Must Contain an Uppercase Letter")
+	.withMessage("Password must contain an uppercase letter")
 	.trim()
 	.escape();
 
-router.post(
+authRouter.post(
 	"/register",
 	nameValidatorChain,
   passwordValidatorChain,
 	async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(400).json({ errors: errors.array });
+      res.status(400).json({ error: errors.array().map(x => x.msg) });
       return next();
     }
 
 		const { name, password } = req.body;
-		const user = await db.user.findUnique({ where: { name } });
+    const user = await db.user.findUnique({ where: { name } }); 
 
 		if (user != null) {
 			res.status(400).json({ error: "Name already taken" });
@@ -49,7 +49,7 @@ router.post(
 	},
 );
 
-router.post(
+authRouter.post(
 	"/login",
 	nameValidatorChain,
   passwordValidatorChain,
@@ -58,7 +58,7 @@ router.post(
 
 		if (errors.isEmpty()) {
 			const { name, password } = req.body;
-			const user = await db.user.findUnique({ where: { name } });
+      const user = await db.user.findUnique({ where: { name } }); 
 
 			if (user != null) {
 				if (await bcrypt.compareSync(password, user.password)) {
@@ -77,12 +77,3 @@ router.post(
     next();
 	},
 );
-
-userRouter.post("/unregister", tokenValidator, async (req, res, next) => {
-  const { id } = res.decoded;
-	await db.user.delete({ where: { id } });
-	res.status(200).end();
-  next();
-});
-
-// app.get('/transactions')

@@ -1,9 +1,12 @@
-import fs from "node:fs";
+import * as fs from "node:fs";
+import * as path from "path";
 import https from "https";
 import express from "express";
 import { db } from "./db";
-import { logger } from "./logger";
-import { router, userRouter } from "./router";
+import { logger } from "./middleware/logger";
+import { userRouter } from "./routes/user";
+import { authRouter } from "./routes/auth";
+import { jsonValidator } from "./middleware/json";
 
 const app = express();
 
@@ -14,10 +17,10 @@ var only = function(middleware, ...paths) {
   };
 };
 
-app.use(express.json());
+app.use(jsonValidator);
 app.use(only(logger, '/register', '/login', '/unregister'));
 app.use(only(userRouter, '/unregister'));
-app.use(only(router, '/login', '/register'));
+app.use(authRouter);
 
 const options = {
 	key: fs.readFileSync("../cert/key.pem"),
