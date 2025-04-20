@@ -1,0 +1,5 @@
+pub/priv key pair for encrypting sensitive info
+decrypt and encrypt when chaning password
+we don't need the password when sending transactions anymore.
+
+Only need password for creating the keys and reading the sensitive data.

@@ -19,7 +19,11 @@ model User {
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   role          Role           @default(USER)
-  transactions  Transaction[]
+  publicKey     String
+  privateKey    String
+
+  sentTransactions     Transaction[] @relation("SentTransactions")
+  receivedTransactions Transaction[] @relation("ReceivedTransactions")
 }
 
 model RefreshToken {
@@ -33,9 +37,30 @@ model RefreshToken {
 }
 
 model Transaction {
-  id     Int     @id @default(autoincrement())
-  User   User?   @relation(fields: [userId], references: [id])
-  userId Int?
+  id           Int               @id @default(autoincrement())
+  amount       String
+  currency     Currency
+  senderId     Int?
+  receiverId   Int?
+  timestamp    DateTime          @default(now())
+  senderNote   String
+  receiverNote String
+  status       TransactionStatus @default(COMPLETED)
+
+  sender   User? @relation("SentTransactions", fields: [senderId], references: [id])
+  receiver User? @relation("ReceivedTransactions", fields: [receiverId], references: [id])
+}
+
+enum Currency {
+  USD
+  SEK
+  EURO
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
 }
 
 enum Role {

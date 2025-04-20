@@ -1,13 +1,13 @@
 export const jsonValidator = (req, res, next) => {
   // Only apply to requests with JSON content-type
-  if (req.is('application/json')) {
-    let data = '';
-    
-    req.on('data', chunk => {
+  if (req.is("application/json")) {
+    let data = "";
+
+    req.on("data", (chunk) => {
       data += chunk;
     });
-    
-    req.on('end', () => {
+
+    req.on("end", () => {
       try {
         // Try to parse the JSON
         req.body = JSON.parse(data);
