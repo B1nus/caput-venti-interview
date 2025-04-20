@@ -22,8 +22,7 @@ export const userRouter = express.Router();
  *   post:
  *     summary: Unregisters a user
  *     description: This endpoint allows a user to unregister by deleting their account from the system. The user must provide a valid token for authentication.
- *     security:
- *       - bearerAuth: []
+ *     tags: [Auth]
  *     responses:
  *       200:
  *         description: User successfully unregistered
@@ -45,8 +44,7 @@ userRouter.post("/unregister", tokenValidator, async (req, res, next) => {
  *   post:
  *     summary: Changes a user's password
  *     description: This endpoint allows a user to change their password. The user must provide their old password, new password, and a valid token. The system will also re-encrypt transaction notes using the new password.
- *     security:
- *       - bearerAuth: []
+ *     tags: [Auth]
  *     requestBody:
  *       description: Password change data
  *       required: true
@@ -157,3 +155,5 @@ userRouter.post(
     res.status(200).end();
   },
 );
+
+// /

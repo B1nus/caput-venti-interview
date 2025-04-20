@@ -17,8 +17,7 @@ export const transactionRouter = express.Router();
  *   post:
  *     summary: Sends a transaction to another user
  *     description: This endpoint allows a user to send a transaction to another user. The transaction includes an amount, currency, and notes for both the sender and the receiver.
- *     security:
- *       - bearerAuth: []
+ *     tags: [Auth]
  *     requestBody:
  *       description: Transaction data
  *       required: true
@@ -27,11 +26,14 @@ export const transactionRouter = express.Router();
  *           schema:
  *             type: object
  *             properties:
+ *               password:
+ *                 type: string
+ *                 description: The password of the sender.
  *               receiver:
  *                 type: string
  *                 description: The name of the receiver.
  *               amount:
- *                 type: number
+ *                 type: string
  *                 description: The amount to send.
  *               currency:
  *                 type: string
@@ -43,6 +45,7 @@ export const transactionRouter = express.Router();
  *                 type: string
  *                 description: A note for the receiver.
  *             required:
+ *               - password
  *               - receiver
  *               - amount
  *               - currency
@@ -68,6 +71,7 @@ export const transactionRouter = express.Router();
 transactionRouter.post(
   "/send",
   tokenValidator,
+  decryptionValidator,
   [
     check("receiver")
       .exists()
@@ -193,8 +197,7 @@ async function formatTransaction(
  *   get:
  *     summary: Retrieves a list of all transactions for the authenticated user
  *     description: This endpoint returns a list of transactions (both sent and received) for the authenticated user.
- *     security:
- *       - bearerAuth: []
+ *     tags: [Auth]
  *     responses:
  *       200:
  *         description: List of transactions
@@ -209,7 +212,7 @@ async function formatTransaction(
  *                     type: string
  *                     description: The type of transaction (SENT or RECEIVED)
  *                   amount:
- *                     type: number
+ *                     type: string
  *                   currency:
  *                     type: string
  *                   note:
@@ -265,8 +268,7 @@ transactionRouter.get(
  *   get:
  *     summary: Retrieves a list of transactions with decrypted notes for the authenticated user
  *     description: This endpoint retrieves transactions for the authenticated user and decrypts the transaction notes using a passphrase.
- *     security:
- *       - bearerAuth: []
+ *     tags: [Auth]
  *     requestBody:
  *       description: Passphrase for decrypting transaction notes
  *       required: true
@@ -294,7 +296,7 @@ transactionRouter.get(
  *                     type: string
  *                     description: The type of transaction (SENT or RECEIVED)
  *                   amount:
- *                     type: number
+ *                     type: string
  *                   currency:
  *                     type: string
  *                   note:
