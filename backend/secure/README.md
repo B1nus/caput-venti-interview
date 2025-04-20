@@ -9,3 +9,5 @@ I opted to use a public/private key pair instead of the password directly so tha
 I needed to use the public/private key pair method in order to let the receiver also see their notes. Since I don't know their password I cannot use it to encrypt their notes. So I use their public key instead.
 
 The amount field in transactions should be checked more thoroughly. But the focus is on security, not validity of transactions so I skipped this.
+
+I've tried to comply to separation of concern (SOC) by only importing crypto related libraries in src/crypto.ts. This means that you can be sure that no other file is messing with decryption and encryption other than using the exported functions.

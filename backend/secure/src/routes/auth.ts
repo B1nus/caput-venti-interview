@@ -1,5 +1,3 @@
-import jwt from "jsonwebtoken"; // might be better to have this dependency elsewhere.
-import bcrypt from "bcrypt";
 import express from "express";
 import { check, header, validationResult } from "express-validator";
 import { db } from "../db";
@@ -9,14 +7,14 @@ import {
   nameValidator,
   passwordValidator,
 } from "../middleware/auth";
-import crypto from "crypto";
+import { hashPassword, generateKeyPair, createJwtToken } from "../crypto";
 
 export const authRouter = express.Router();
 
 authRouter.post(
   "/register",
-  nameValidator,
-  passwordValidator,
+  nameValidator("name"),
+  passwordValidator("password"),
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -29,21 +27,8 @@ authRouter.post(
     if (user != null) {
       res.status(400).json({ error: "Name already taken" });
     } else {
-      const hashed = bcrypt.hashSync(password, 12);
-
-      const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
-        modulusLength: 4096,
-        publicKeyEncoding: {
-          type: "spki",
-          format: "pem",
-        },
-        privateKeyEncoding: {
-          type: "pkcs8",
-          format: "pem",
-          cipher: "aes-256-cbc",
-          passphrase: password,
-        },
-      });
+      const { privateKey, publicKey } = generateKeyPair(password);
+      const hashed = hashPassword(password);
 
       await db.user.create({
         data: { name, password: hashed, publicKey, privateKey },
@@ -55,12 +40,6 @@ authRouter.post(
 );
 
 authRouter.post("/login", loginValidator, async (req, res, next) => {
-  const user = req.user;
-
-  const jwtToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRATION_TIME,
-  });
-  return res.status(200).json({
-    token: jwtToken,
-  });
+  const token = createJwtToken(req.user.id);
+  return res.status(200).json({ token });
 });

@@ -2,8 +2,8 @@ import express from "express";
 import { check, validationResult } from "express-validator";
 import { db } from "../db";
 import { Currency } from "../../generated/prisma/client";
-import { loginValidator, tokenValidator } from "../middleware/auth";
-import crypto from "crypto";
+import { loginValidator, tokenValidator, decryptionValidator } from "../middleware/auth";
+import { encryptBase64, decryptBase64 } from "../crypto"; 
 
 export const transactionRouter = express.Router();
 
@@ -19,7 +19,7 @@ transactionRouter.post(
       .isString()
       .trim()
       .escape()
-      .custom(async (value, { req }) => value !== req.user.name)
+      .custom((value, { req }) => value !== req.user.name)
       .withMessage("Receiver cannot be the same as sender"),
     check("amount")
       .exists()
@@ -58,12 +58,12 @@ transactionRouter.post(
       .escape(),
   ],
   async (req, res, next) => {
-    const { id, publicKey } = req.user;
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ error: errors.array().map((x) => x.msg) });
     }
+
+    const { id, publicKey } = req.user;
 
     const { receiver, amount, currency, senderNote, receiverNote } = req.body;
 
@@ -77,21 +77,14 @@ transactionRouter.post(
     const receiverId = receiverUser.id;
     const receiverPublicKey = receiverUser.publicKey;
 
-    const encryptedSenderNote = crypto
-      .publicEncrypt(publicKey, senderNote)
-      .toString("base64");
-    const encryptedReceiverNote = crypto
-      .publicEncrypt(receiverPublicKey, receiverNote)
-      .toString("base64");
-
     await db.transaction.create({
       data: {
         amount,
         currency,
-        receiverNote: encryptedReceiverNote,
-        senderNote: encryptedSenderNote,
+        receiverNote: encryptBase64(receiverPublicKey, receiverNote),
+        senderNote: encryptBase64(publicKey, senderNote),
         senderId: id,
-        receiverId: receiverId,
+        receiverId,
       },
     });
 
@@ -99,32 +92,22 @@ transactionRouter.post(
   },
 );
 
-type Transaction = {
-  status: string,
-  amount: string,
-  currency: string,
-  receiver?: string,
-  sender?: string,
-  message?: string,
-  note?: string,
-};
-
-async function formatTransaction(raw_transaction, sent: boolean, passphrase?: string) {
-  const receiver = raw_transaction.receiverId ? (await db.user.findUnique({ where: { id: raw_transaction.receiverId } })) : null;
-  const sender = raw_transaction.senderId ? (await db.user.findUnique({ where: { id: raw_transaction.senderId } })) : null;
+async function formatTransaction(rawTransaction, sent: boolean, passphrase?: string) {
+  const receiver = rawTransaction.receiverId ? (await db.user.findUnique({ where: { id: rawTransaction.receiverId } })) : null;
+  const sender = rawTransaction.senderId ? (await db.user.findUnique({ where: { id: rawTransaction.senderId } })) : null;
 
   var transaction = {
-    status: raw_transaction.status,
-    amount: raw_transaction.amount,
-    currency: raw_transaction.currency,
+    status: rawTransaction.status,
+    amount: rawTransaction.amount,
+    currency: rawTransaction.currency,
   };
 
   if (sent) {
     transaction.receiver = receiver ? receiver.name : null;
-    transaction.note = passphrase ? crypto.privateDecrypt({ key: sender.privateKey, passphrase }, Buffer.from(raw_transaction.senderNote, "base64")).toString() : null;
+    transaction.note = passphrase ? decryptBase64(sender.privateKey, passphrase, rawTransaction.senderNote) : null;
   } else {
     transaction.sender = sender ? sender.name : null;
-    transaction.note = passphrase ? crypto.privateDecrypt({ key: receiver.privateKey, passphrase }, Buffer.from(raw_transaction.receiverNote, "base64")).toString() : null;
+    transaction.note = passphrase ? decryptBase64(receiver.privateKey, passphrase, rawTransaction.receiverNote) : null;
   }
 
   return transaction;
@@ -165,7 +148,8 @@ transactionRouter.get(
 
 transactionRouter.get(
   "/transactions/decrypt",
-  loginValidator,
+  tokenValidator,
+  decryptionValidator,
   async (req, res, next) => {
     const { password } = req.body;
 

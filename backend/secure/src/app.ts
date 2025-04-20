@@ -13,22 +13,22 @@ import { roleValidator } from "./middleware/role";
 
 const app = express();
 
-var only = function (middleware, ...paths) {
-  return function (req, res, next) {
-    const pathCheck = paths.some((path) => path === req.path);
-    pathCheck ? middleware(req, res, next) : next();
-  };
-};
-
-var unless = function (middleware, ...paths) {
-  return function (req, res, next) {
-    const pathCheck = paths.some((path) => path === req.path);
-    pathCheck ? next() : middleware(req, res, next);
-  };
-};
+// var only = function (middleware, ...paths) {
+//   return function (req, res, next) {
+//     const pathCheck = paths.some((path) => path === req.path);
+//     pathCheck ? middleware(req, res, next) : next();
+//   };
+// };
+//
+// var unless = function (middleware, ...paths) {
+//   return function (req, res, next) {
+//     const pathCheck = paths.some((path) => path === req.path);
+//     pathCheck ? next() : middleware(req, res, next);
+//   };
+// };
 
 app.use(jsonValidator);
-app.use(only(logger, "/register", "/login", "/unregister"));
+app.use(logger);
 app.use(authRouter);
 app.use(transactionRouter);
 app.use(userRouter);

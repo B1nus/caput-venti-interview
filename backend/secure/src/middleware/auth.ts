@@ -1,11 +1,27 @@
 import { check } from "express-validator";
 import { db } from "../db";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { checkPassword, verifyJwtToken } from "../crypto";
+
+export const decryptionValidator = async (req, res, next) => {
+  const passwordResult = await passwordValidator("password").run(req);
+
+  if (!passwordResult.isEmpty()) {
+    return res.status(400).json({ error: "Invalid credentials" });
+  }
+
+  const user = req.user;
+  const { password } = req.body;
+
+  if (!checkPassword(password, user.password)) {
+    return res.status(400).json({ error: "Invalid credentials" });
+  }
+
+  next();
+};
 
 export const loginValidator = async (req, res, next) => {
-  const passwordResult = await passwordValidator.run(req);
-  const nameResult = await nameValidator.run(req);
+  const passwordResult = await passwordValidator("password").run(req);
+  const nameResult = await nameValidator("name").run(req);
 
   if (!passwordResult.isEmpty() || !nameResult.isEmpty()) {
     return res.status(400).json({ error: "Invalid credentials" });
@@ -18,7 +34,7 @@ export const loginValidator = async (req, res, next) => {
     return res.status(400).json({ error: "Invalid credentials" });
   }
 
-  if (!(await bcrypt.compareSync(password, user.password))) {
+  if (!checkPassword(password, user.password)) {
     return res.status(400).json({ error: "Invalid credentials" });
   }
 
@@ -36,7 +52,7 @@ export const tokenValidator = async (req, res, next) => {
   const token = auth.startsWith("Bearer ") ? auth.slice(7) : auth;
 
   try {
-    const { id } = jwt.verify(token, process.env.JWT_SECRET);
+    const { id } = verifyJwtToken(token);
     const user = await db.user.findUnique({ where: { id } });
 
     if (user) {
@@ -56,20 +72,26 @@ export const tokenValidator = async (req, res, next) => {
   }
 };
 
-export const nameValidator = check("name")
-  .notEmpty()
-  .withMessage("Name must not be empty")
-  .trim()
-  .escape();
+export function nameValidator(field: string) {
+  return check(field)
+    .isString()
+    .notEmpty()
+    .withMessage("Name cannot be empty")
+    .trim()
+    .escape();
+}
 
-export const passwordValidator = check("password")
-  .notEmpty()
-  .withMessage("Password must not be empty")
-  .isLength({ min: 8 })
-  .withMessage("Password must be at least 8 characters")
-  .matches("[0-9]")
-  .withMessage("Password must contain a number")
-  .matches("[A-Z]")
-  .withMessage("Password must contain an uppercase letter")
-  .trim()
-  .escape();
+export function passwordValidator(field: string) {
+  return check(field)
+    .notEmpty()
+    .withMessage(`${field} must not be empty`)
+    .isLength({ min: 8 })
+    .withMessage(`${field} must be at least 8 characters`)
+    .matches("[0-9]")
+    .withMessage(`${field} password must contain a number`)
+    .matches("[A-Z]")
+    .withMessage(`${field} password must contain an uppercase letter`)
+    .trim()
+    .escape();
+}
+
