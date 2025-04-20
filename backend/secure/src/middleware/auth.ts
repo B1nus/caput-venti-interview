@@ -94,4 +94,3 @@ export function passwordValidator(field: string) {
     .trim()
     .escape();
 }
-

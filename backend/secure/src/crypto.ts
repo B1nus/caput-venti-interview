@@ -2,7 +2,10 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 
-export function generateKeyPair(passphrase: string): { publicKey: string, privateKey: string } {
+export function generateKeyPair(passphrase: string): {
+  publicKey: string;
+  privateKey: string;
+} {
   return crypto.generateKeyPairSync("rsa", {
     modulusLength: 4096,
     publicKeyEncoding: {
@@ -22,8 +25,14 @@ export function encryptBase64(publicKey: string, text: string): string {
   return crypto.publicEncrypt(publicKey, text).toString("base64");
 }
 
-export function decryptBase64(key: string, passphrase: string, base64: string): string {
-  return crypto.privateDecrypt({ key, passphrase }, Buffer.from(base64, "base64")).toString();
+export function decryptBase64(
+  key: string,
+  passphrase: string,
+  base64: string,
+): string {
+  return crypto
+    .privateDecrypt({ key, passphrase }, Buffer.from(base64, "base64"))
+    .toString();
 }
 
 export function hashPassword(password: string): string {
@@ -41,5 +50,5 @@ export function createJwtToken(userId: number): string {
 }
 
 export function verifyJwtToken(token: string): number {
-    return jwt.verify(token, process.env.JWT_SECRET);
+  return jwt.verify(token, process.env.JWT_SECRET);
 }
