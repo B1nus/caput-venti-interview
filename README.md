@@ -1,64 +1,26 @@
-# Venti Wisdome Technical Assessment Tasks
+# secure api implementation
+Generate the necessary prisma files by running `npx prisma migrate dev --name init` in the root directory. Then you can start the backend by running `npx tsx app.ts` while in the `./src` directory. You can see documentation for the api at `https://localhost:3000/api-docs` in a browser of your choice.
 
-This directory contains a collection of technical assessment tasks designed to evaluate candidates for positions at our company. Each task is intended to take approximately 3-5 hours to complete and tests skills relevant to our technology stack:
+This is my first time using javascript/typescript to make a webserver. It's easy to see why many people use this to write webservers when the ecosystem is so mature and helpfull. express, prisma, express-validator, express-api-limiter, swagger, winston, they are all super easy to use and cut down on development time and cost.
 
-- Backend: Node.js, Prisma, gRPC, databases (e.g., MySQL)
-- Frontend: SolidJS or React, TailwindCSS
+I've done my best to follow SOC and other reasonable design patterns for code organisation. For example by only importing crypto, bcrypt and jsonwebtoken in `./crypto.ts` so you can be sure that all encryption, decryption and hashing occurs in those functions. Then again, I'm not aware of too many conventions and I might have broken some I'm not aware of.
 
-## Important Information for Candidates
+# security considerations
+I'm using simple integers for id's for the transactions and users. It could be more secure to use another method which hides the order of creation of users and transactions, but I opted for simple integers for it's simplicity and performance.
 
-**Please read the [GENERAL_GUIDELINES.md](./GENERAL_GUIDELINES.md) file before starting any task.** It contains important information about task selection, use of AI tools, and evaluation criteria.
+The encryption of transaction notes is done using each users public/private key. The private key is encrypted using the users password, so only they can read their notes. Even if the database is compromised the attacker will not be able to read these notes. The other fields can also be encrypted the same way.
 
-## Task Categories
+I opted to force users to enter a password for each transaction. While annoying, it is for security. We don't want somebody to lose their money because they accidentally shared their jwt token. This is my attempt at guarding against CSRF attacks. CSRF attacks are only a problem if the fronted application automatically sends the authorization tokens to the request, so depending on the frontend this might be unnecessary. Nevertheless I think it's worth it.
 
-Tasks are organized into various categories to test different skill sets:
+The cert folder should not be in the repo, if it weren't for this being a exercise I would include `./cert/` in the `.gitignore`.
 
-- `backend/` - Tasks focused on server-side development
-- `frontend/` - Tasks focused on client-side development
-- `fullstack/` - Tasks that combine both frontend and backend development
-- `algorithm/` - Language-agnostic tasks focused on algorithmic problem-solving
-- `system-design/` - Tasks focused on architecture and design decisions
+# what I would improve with more time
+Add a real way to pay money.
 
-## Evaluation Criteria
+Api keys.
 
-For all tasks, we value:
+The audit logging system is very basic. A more fleshed audit log would have rules for each route where you can selectively hide and show certain data. To for example hide the jwt token and passwords but include the fact that the request succeded.
 
-1. **Clean, non-nested code** - Complexity should be minimized
-2. **Robustness** - Code should handle edge cases and be foolproof
-3. **Clarity** - Code should be easy to understand and well-documented
-4. **Testability** - Code should be structured to facilitate testing
-5. **Performance** - Solutions should be efficient
-6. **Security** - Solutions should follow security best practices
+The amount field in transactions should be checked more thoroughly. But the focus is on security, not validity of transactions so I skipped this.
 
-Each task includes specific instructions and evaluation criteria tailored to the skills being tested. 
-
-## Using This Repository as a Template
-
-This repository is set up as a GitHub template. To use it for your own project:
-
-1. Click the "Use this template" button at the top of this repository
-2. Create your new repository (can be private)
-3. Start building on top of this foundation
-
-**Note:** When you create a repository from this template, an issue will be automatically created in your new repository with information about the template origin. The issue will include instructions on how to add the original owner as a collaborator if you wish to share your work with them.
-
-This setup enables:
-- Private development of your own project based on these tasks
-- Optional sharing with the original repository owner (manual process)
-- Getting feedback and assistance when needed
-
-## Submission Instructions
-
-For all tasks, please follow these submission instructions:
-
-1. Use this repo as a template
-2. Invite StAmirey as collaborator
-3. Complete source code for your solution
-4. Include a README file that contains:
-   - Setup instructions for running your solution locally
-   - Overview of your approach and architecture
-   - Any assumptions or limitations of your implementation
-   - Explanation of key design decisions
-   - What you would improve with more time
-
-For more information about this template setup, see the [TEMPLATE_SETUP.md](./TEMPLATE_SETUP.md) file. 
+A balance field in the user model with encryption using the users public key so only they can see their money. I would need to buffer the received transactions in order for this to work since I cannot add to their balance unless I have their password.

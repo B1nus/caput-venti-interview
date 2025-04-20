@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  name          String         @unique
+  password      String
+  refreshTokens RefreshToken[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  role          Role           @default(USER)
+  publicKey     String
+  privateKey    String
+
+  sentTransactions     Transaction[] @relation("SentTransactions")
+  receivedTransactions Transaction[] @relation("ReceivedTransactions")
+}
+
+model RefreshToken {
+  id          Int      @id @default(autoincrement())
+  hashedToken String
+  userId      Int
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  revoked     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Transaction {
+  id           Int               @id @default(autoincrement())
+  amount       String
+  currency     Currency
+  senderId     Int?
+  receiverId   Int?
+  timestamp    DateTime          @default(now())
+  senderNote   String
+  receiverNote String
+  status       TransactionStatus @default(COMPLETED)
+
+  sender   User? @relation("SentTransactions", fields: [senderId], references: [id])
+  receiver User? @relation("ReceivedTransactions", fields: [receiverId], references: [id])
+}
+
+enum Currency {
+  USD
+  SEK
+  EURO
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum Role {
+  USER
+  ADMIN
+}
