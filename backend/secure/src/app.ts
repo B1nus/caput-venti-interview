@@ -10,23 +10,11 @@ import { authRouter } from "./routes/auth";
 import { transactionRouter } from "./routes/transaction";
 import { jsonValidator } from "./middleware/json";
 import { roleValidator } from "./middleware/role";
+import { rateLimit } from "express-rate-limit";
 
 const app = express();
 
-// var only = function (middleware, ...paths) {
-//   return function (req, res, next) {
-//     const pathCheck = paths.some((path) => path === req.path);
-//     pathCheck ? middleware(req, res, next) : next();
-//   };
-// };
-//
-// var unless = function (middleware, ...paths) {
-//   return function (req, res, next) {
-//     const pathCheck = paths.some((path) => path === req.path);
-//     pathCheck ? next() : middleware(req, res, next);
-//   };
-// };
-
+app.use(rateLimit({ windowMs: 1000 * 60, limit: 20, message: { error: "Woa there buddy, slow down" } }));
 app.use(jsonValidator);
 app.use(logger);
 app.use(authRouter);
