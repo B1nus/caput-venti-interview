@@ -269,3 +269,8 @@
 {"level":"info","message":{"ip":"::1","method":"POST","status":400,"url":"/login"},"timestamp":"2025-04-20T15:29:45.547Z"}
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":400,"url":"/send"},"timestamp":"2025-04-20T15:49:58.739Z"}
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":400,"url":"/send"},"timestamp":"2025-04-20T15:50:05.781Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","status":400,"url":"/transactions"},"timestamp":"2025-04-20T18:36:29.569Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","status":400,"url":"/transactions"},"timestamp":"2025-04-20T18:36:51.958Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":400,"url":"/register"},"timestamp":"2025-04-20T18:38:24.099Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":400,"url":"/register"},"timestamp":"2025-04-20T18:39:44.296Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":200,"url":"/login"},"timestamp":"2025-04-20T18:41:25.011Z"}

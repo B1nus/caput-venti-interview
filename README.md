@@ -1,5 +1,5 @@
 # secure api implementation
-Generate the necessary prisma files by running `npx prisma migrate dev --name init` in the root directory. Then you can start the backend by running `npx tsx app.ts` while in the `./src` directory. You can see documentation for the api at `https://localhost:3000/api-docs` in a browser of your choice.
+Start the backend by running `npx tsx app.ts` while in the `./src` directory. You can see documentation for the api at `https://localhost:3000/api-docs` in a browser of your choice.
 
 This is my first time using javascript/typescript to make a webserver. It's easy to see why many people use this to write webservers when the ecosystem is so mature and helpfull. express, prisma, express-validator, express-api-limiter, swagger, winston, they are all super easy to use and cut down on development time and cost.
 
@@ -12,7 +12,7 @@ The encryption of transaction notes is done using each users public/private key.
 
 I opted to force users to enter a password for each transaction. While annoying, it is for security. We don't want somebody to lose their money because they accidentally shared their jwt token. This is my attempt at guarding against CSRF attacks. CSRF attacks are only a problem if the fronted application automatically sends the authorization tokens to the request, so depending on the frontend this might be unnecessary. Nevertheless I think it's worth it.
 
-The cert folder should not be in the repo, if it weren't for this being a exercise I would include `./cert/` in the `.gitignore`.
+The cert folder should not be in the repo, if it weren't for this being a exercise I would include `./cert/` in the `.gitignore`. Same goes for the `.env` file with the `JWT_SECRET` which should not be shown to anyone. `audit.log` should probably also be in the `.gitignore`.
 
 # what I would improve with more time
 Add a real way to pay money.
