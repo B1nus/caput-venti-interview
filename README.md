@@ -21,6 +21,8 @@ I am unsure if my method for storing api keys is secure. I would assume it is sa
 I made sure to make all routes for operating on the api keys require a password. This way, somebody with a working api key cannot get more api key's for example.
 
 # what I would improve with more time
+I would switch to MySQL instead of sqlite. Thanks to prisma that shouldn't be too hard.
+
 More granular control over API keys so you can easily revokw acces to a specific route for a specific key for example.
 
 A backup for 2FA if the user loses their phone.
