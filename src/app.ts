@@ -8,6 +8,7 @@ import { userRouter } from "./routes/user";
 import { adminRouter } from "./routes/admin";
 import { authRouter } from "./routes/auth";
 import { transactionRouter } from "./routes/transaction";
+import { apiRouter } from "./routes/api";
 import { jsonValidator } from "./middleware/json";
 import { roleValidator } from "./middleware/role";
 import { rateLimit } from "express-rate-limit";
@@ -22,10 +23,23 @@ const swaggerOptions = {
         url: "https://localhost:3000",
       },
     ],
+    components: {
+      securitySchemes: {
+        Authorization: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+          value: "Bearer <JWT token here>",
+        },
+      },
+    },
   },
   apis: ["./routes/*.ts"],
 };
 const swaggerDocs = swaggerjsdoc(swaggerOptions);
+const swaggerUiOptions = {
+  explorer: true,
+};
 
 const app = express();
 
@@ -36,9 +50,14 @@ app.use(
     message: { error: "Woa there buddy, slow down" },
   }),
 );
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocs, swaggerUiOptions),
+);
 app.use(jsonValidator);
 app.use(logger);
+app.use(apiRouter);
 app.use(authRouter);
 app.use(transactionRouter);
 app.use(userRouter);
@@ -50,5 +69,5 @@ const options = {
 };
 
 https.createServer(options, app).listen(process.env.PORT, () => {
-  console.log(`Listening on https://localhost:${process.env.PORT}/`);
+  console.log(`https://localhost:${process.env.PORT}/api-docs`);
 });

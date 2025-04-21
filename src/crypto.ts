@@ -43,6 +43,18 @@ export function checkPassword(password: string, hashed: string): boolean {
   return bcrypt.compareSync(password, hashed);
 }
 
+export function createApiKey(): string {
+  const buffer = crypto.randomBytes(32);
+  return buffer.toString("hex");
+}
+
+export function hashApiKey(apiKey: string): string {
+  return crypto
+    .createHmac("sha1", process.env.HMAC_SECRET)
+    .update(apiKey)
+    .digest("hex");
+}
+
 export function createJwtToken(userId: number): string {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRATION_TIME,

@@ -12,28 +12,28 @@ datasource db {
 }
 
 model User {
-  id            Int            @id @default(autoincrement())
-  name          String         @unique
-  password      String
-  refreshTokens RefreshToken[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  role          Role           @default(USER)
-  publicKey     String
-  privateKey    String
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  password   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  role       Role     @default(USER)
+  publicKey  String
+  privateKey String
 
   sentTransactions     Transaction[] @relation("SentTransactions")
   receivedTransactions Transaction[] @relation("ReceivedTransactions")
+
+  apiKeys ApiKey[] @relation("ApiKeys")
 }
 
-model RefreshToken {
-  id          Int      @id @default(autoincrement())
-  hashedToken String
-  userId      Int
-  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  revoked     Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model ApiKey {
+  id             Int      @id @default(autoincrement())
+  name           String
+  key            String    @unique
+  expirationDate DateTime
+  userId         Int
+  user           User     @relation("ApiKeys", fields: [userId], references: [id])
 }
 
 model Transaction {

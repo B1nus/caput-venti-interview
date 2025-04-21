@@ -1,6 +1,6 @@
 import { check } from "express-validator";
 import { db } from "../db";
-import { checkPassword, verifyJwtToken } from "../crypto";
+import { checkPassword, verifyJwtToken, hashApiKey } from "../crypto";
 
 export const decryptionValidator = async (req, res, next) => {
   const passwordResult = await passwordValidator("password").run(req);
@@ -49,26 +49,66 @@ export const tokenValidator = async (req, res, next) => {
   }
 
   const auth = req.headers.authorization;
-  const token = auth.startsWith("Bearer ") ? auth.slice(7) : auth;
+  const split = auth.split(" ");
+  if (split.length == 0) {
+    return res.status(400).json({ error: "Missing authentication token" });
+  }
+  if (split.length != 2 || (split[0] != "ApiKey" && split[0] != "Bearer")) {
+    return res
+      .status(400)
+      .json({
+        error:
+          "Invalid token format. Prefix the token with either 'Bearer <token>' or 'ApiKey <token>'",
+      });
+  }
 
-  try {
-    const { id } = verifyJwtToken(token);
-    const user = await db.user.findUnique({ where: { id } });
+  const token = split[1];
+  if (split[0] == "Bearer") {
+    try {
+      const { id } = verifyJwtToken(token);
+      const user = await db.user.findUnique({ where: { id } });
 
-    if (user) {
-      req.user = user;
-      next();
-    } else {
-      return res.status(410).json({ error: "User does not exists" });
+      if (user) {
+        req.user = user;
+        next();
+      } else {
+        return res.status(410).json({ error: "User does not exists" });
+      }
+    } catch (error) {
+      if (error.name === "TokenExpiredError") {
+        return res.status(401).json({ error: "Authentication token expired" });
+      } else if (error.name === "NotBeforeError") {
+        return res
+          .status(400)
+          .json({ error: "Bogus authentication token date" });
+      } else {
+        return res.status(400).json({ error: "Invalid authentication token" });
+      }
     }
-  } catch (error) {
-    if (error.name === "TokenExpiredError") {
-      return res.status(401).json({ error: "Authentication token expired" });
-    } else if (error.name === "NotBeforeError") {
-      return res.status(400).json({ error: "Bogus authentication token date" });
-    } else {
-      return res.status(400).json({ error: "Invalid authentication token" });
+  }
+
+  if (split[0] == "ApiKey") {
+    const key = await db.apiKey.findUnique({
+      where: {
+        key: hashApiKey(token),
+      },
+    });
+    if (!key) {
+      return res.status(401).json({ error: "Non existent api key" });
     }
+
+    if (new Date(key.expirationDate) < new Date()) {
+      await db.apiKey.delete({ where: key });
+      return res.status(401).json({ error: "Non existent api key" });
+    }
+
+    const user = await db.user.findUnique({ where: { id: key.userId } });
+    if (!user) {
+      return res.status(401).json({ error: "Invalid api key" }); // Give little information
+    }
+
+    req.user = user;
+    next();
   }
 };
 

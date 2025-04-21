@@ -1,9 +1,9 @@
 # secure api implementation
 Start the backend by running `npx tsx app.ts` while in the `./src` directory. You can see documentation for the api at `https://localhost:3000/api-docs` in a browser of your choice.
 
-This is my first time using javascript/typescript to make a webserver. It's easy to see why many people use this to write webservers when the ecosystem is so mature and helpfull. express, prisma, express-validator, express-api-limiter, swagger, winston, they are all super easy to use and cut down on development time and cost.
+This is my first time using javascript/typescript to make a webserver. It's easy to see why many people use this to write webservers when the ecosystem is so mature and helpful. express, prisma, express-validator, express-api-limiter, swagger, winston, they are all super easy to use and cut down on development time.
 
-I've done my best to follow SOC and other reasonable design patterns for code organisation. For example by only importing crypto, bcrypt and jsonwebtoken in `./crypto.ts` so you can be sure that all encryption, decryption and hashing occurs in those functions. Then again, I'm not aware of too many conventions and I might have broken some I'm not aware of.
+I've done my best to follow SOC and other reasonable design patterns for code organisation. For example by only importing crypto, bcrypt and jsonwebtoken in `./crypto.ts` so you can be sure that all encryption, decryption and hashing occurs in those functions.
 
 # security considerations
 I'm using simple integers for id's for the transactions and users. It could be more secure to use another method which hides the order of creation of users and transactions, but I opted for simple integers for it's simplicity and performance.
@@ -12,12 +12,18 @@ The encryption of transaction notes is done using each users public/private key.
 
 I opted to force users to enter a password for each transaction. While annoying, it is for security. We don't want somebody to lose their money because they accidentally shared their jwt token. This is my attempt at guarding against CSRF attacks. CSRF attacks are only a problem if the fronted application automatically sends the authorization tokens to the request, so depending on the frontend this might be unnecessary. Nevertheless I think it's worth it.
 
-The cert folder should not be in the repo, if it weren't for this being a exercise I would include `./cert/` in the `.gitignore`. Same goes for the `.env` file with the `JWT_SECRET` which should not be shown to anyone. `audit.log` should probably also be in the `.gitignore`.
+The cert folder should not be in the repo, if it weren't for this being a exercise I would include `./cert/` in the `.gitignore`. Same goes for the `.env` file with the `JWT_SECRET` which should not be shown to anyone. `audit.log` should also be in the `.gitignore`.
+
+I'm only going to let normal users have api keys. The risks involved with an attacker gaining access to a admin api key is just too high. They would gain too many permissions.
+
+I am unsure if my method for storing api keys is secure. I would assume it is safer to use an oauth, or adding a salt somehow. I was unable to find any conventional method other than oauth. Hopefully the ability to remove api keys and them expiring is enough for security.
+
+I made sure to make all routes for operating on the api keys require a password. This way, somebody with a working api key cannot get more api key's for example.
 
 # what I would improve with more time
-Add a real way to pay money.
+More granular control over API keys so you can easily revokw acces to a specific route for a specific key for example.
 
-Api keys.
+A backup for 2FA if the user loses their phone.
 
 The audit logging system is very basic. A more fleshed audit log would have rules for each route where you can selectively hide and show certain data. To for example hide the jwt token and passwords but include the fact that the request succeded.
 

@@ -2,8 +2,8 @@ import { Role } from "../generated/prisma/client";
 
 export function roleValidator(...roles: Role[]) {
   return (req, res, next) => {
-    for (var role of roles) {
-      if (res.user.role == role.toString()) {
+    for (const role of roles) {
+      if (req.user.role == role.toString()) {
         return next();
       }
     }

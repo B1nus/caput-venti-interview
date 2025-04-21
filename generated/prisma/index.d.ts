@@ -19,10 +19,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model RefreshToken
+ * Model ApiKey
  * 
  */
-export type RefreshToken = $Result.DefaultSelection<Prisma.$RefreshTokenPayload>
+export type ApiKey = $Result.DefaultSelection<Prisma.$ApiKeyPayload>
 /**
  * Model Transaction
  * 
@@ -208,14 +208,14 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.refreshToken`: Exposes CRUD operations for the **RefreshToken** model.
+   * `prisma.apiKey`: Exposes CRUD operations for the **ApiKey** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more RefreshTokens
-    * const refreshTokens = await prisma.refreshToken.findMany()
+    * // Fetch zero or more ApiKeys
+    * const apiKeys = await prisma.apiKey.findMany()
     * ```
     */
-  get refreshToken(): Prisma.RefreshTokenDelegate<ExtArgs, ClientOptions>;
+  get apiKey(): Prisma.ApiKeyDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.transaction`: Exposes CRUD operations for the **Transaction** model.
@@ -667,7 +667,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    RefreshToken: 'RefreshToken',
+    ApiKey: 'ApiKey',
     Transaction: 'Transaction'
   };
 
@@ -687,7 +687,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "refreshToken" | "transaction"
+      modelProps: "user" | "apiKey" | "transaction"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -765,77 +765,77 @@ export namespace Prisma {
           }
         }
       }
-      RefreshToken: {
-        payload: Prisma.$RefreshTokenPayload<ExtArgs>
-        fields: Prisma.RefreshTokenFieldRefs
+      ApiKey: {
+        payload: Prisma.$ApiKeyPayload<ExtArgs>
+        fields: Prisma.ApiKeyFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.RefreshTokenFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload> | null
+            args: Prisma.ApiKeyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.RefreshTokenFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+            args: Prisma.ApiKeyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload>
           }
           findFirst: {
-            args: Prisma.RefreshTokenFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload> | null
+            args: Prisma.ApiKeyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.RefreshTokenFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+            args: Prisma.ApiKeyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload>
           }
           findMany: {
-            args: Prisma.RefreshTokenFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[]
+            args: Prisma.ApiKeyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload>[]
           }
           create: {
-            args: Prisma.RefreshTokenCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+            args: Prisma.ApiKeyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload>
           }
           createMany: {
-            args: Prisma.RefreshTokenCreateManyArgs<ExtArgs>
+            args: Prisma.ApiKeyCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.RefreshTokenCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[]
+            args: Prisma.ApiKeyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload>[]
           }
           delete: {
-            args: Prisma.RefreshTokenDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+            args: Prisma.ApiKeyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload>
           }
           update: {
-            args: Prisma.RefreshTokenUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+            args: Prisma.ApiKeyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload>
           }
           deleteMany: {
-            args: Prisma.RefreshTokenDeleteManyArgs<ExtArgs>
+            args: Prisma.ApiKeyDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.RefreshTokenUpdateManyArgs<ExtArgs>
+            args: Prisma.ApiKeyUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.RefreshTokenUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[]
+            args: Prisma.ApiKeyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload>[]
           }
           upsert: {
-            args: Prisma.RefreshTokenUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+            args: Prisma.ApiKeyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApiKeyPayload>
           }
           aggregate: {
-            args: Prisma.RefreshTokenAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateRefreshToken>
+            args: Prisma.ApiKeyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApiKey>
           }
           groupBy: {
-            args: Prisma.RefreshTokenGroupByArgs<ExtArgs>
-            result: $Utils.Optional<RefreshTokenGroupByOutputType>[]
+            args: Prisma.ApiKeyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ApiKeyGroupByOutputType>[]
           }
           count: {
-            args: Prisma.RefreshTokenCountArgs<ExtArgs>
-            result: $Utils.Optional<RefreshTokenCountAggregateOutputType> | number
+            args: Prisma.ApiKeyCountArgs<ExtArgs>
+            result: $Utils.Optional<ApiKeyCountAggregateOutputType> | number
           }
         }
       }
@@ -998,7 +998,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
-    refreshToken?: RefreshTokenOmit
+    apiKey?: ApiKeyOmit
     transaction?: TransactionOmit
   }
 
@@ -1094,15 +1094,15 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    refreshTokens: number
     sentTransactions: number
     receivedTransactions: number
+    apiKeys: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    refreshTokens?: boolean | UserCountOutputTypeCountRefreshTokensArgs
     sentTransactions?: boolean | UserCountOutputTypeCountSentTransactionsArgs
     receivedTransactions?: boolean | UserCountOutputTypeCountReceivedTransactionsArgs
+    apiKeys?: boolean | UserCountOutputTypeCountApiKeysArgs
   }
 
   // Custom InputTypes
@@ -1119,13 +1119,6 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountRefreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RefreshTokenWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountSentTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TransactionWhereInput
   }
@@ -1135,6 +1128,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountReceivedTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TransactionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountApiKeysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiKeyWhereInput
   }
 
 
@@ -1364,9 +1364,9 @@ export namespace Prisma {
     role?: boolean
     publicKey?: boolean
     privateKey?: boolean
-    refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
     sentTransactions?: boolean | User$sentTransactionsArgs<ExtArgs>
     receivedTransactions?: boolean | User$receivedTransactionsArgs<ExtArgs>
+    apiKeys?: boolean | User$apiKeysArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1405,9 +1405,9 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "password" | "createdAt" | "updatedAt" | "role" | "publicKey" | "privateKey", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
     sentTransactions?: boolean | User$sentTransactionsArgs<ExtArgs>
     receivedTransactions?: boolean | User$receivedTransactionsArgs<ExtArgs>
+    apiKeys?: boolean | User$apiKeysArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1416,9 +1416,9 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
       sentTransactions: Prisma.$TransactionPayload<ExtArgs>[]
       receivedTransactions: Prisma.$TransactionPayload<ExtArgs>[]
+      apiKeys: Prisma.$ApiKeyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1823,9 +1823,9 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    refreshTokens<T extends User$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sentTransactions<T extends User$sentTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sentTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     receivedTransactions<T extends User$receivedTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, User$receivedTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    apiKeys<T extends User$apiKeysArgs<ExtArgs> = {}>(args?: Subset<T, User$apiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2249,30 +2249,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.refreshTokens
-   */
-  export type User$refreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RefreshToken
-     */
-    select?: RefreshTokenSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RefreshToken
-     */
-    omit?: RefreshTokenOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RefreshTokenInclude<ExtArgs> | null
-    where?: RefreshTokenWhereInput
-    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
-    cursor?: RefreshTokenWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
-  }
-
-  /**
    * User.sentTransactions
    */
   export type User$sentTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2321,6 +2297,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.apiKeys
+   */
+  export type User$apiKeysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApiKey
+     */
+    select?: ApiKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApiKey
+     */
+    omit?: ApiKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApiKeyInclude<ExtArgs> | null
+    where?: ApiKeyWhereInput
+    orderBy?: ApiKeyOrderByWithRelationInput | ApiKeyOrderByWithRelationInput[]
+    cursor?: ApiKeyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ApiKeyScalarFieldEnum | ApiKeyScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2340,400 +2340,388 @@ export namespace Prisma {
 
 
   /**
-   * Model RefreshToken
+   * Model ApiKey
    */
 
-  export type AggregateRefreshToken = {
-    _count: RefreshTokenCountAggregateOutputType | null
-    _avg: RefreshTokenAvgAggregateOutputType | null
-    _sum: RefreshTokenSumAggregateOutputType | null
-    _min: RefreshTokenMinAggregateOutputType | null
-    _max: RefreshTokenMaxAggregateOutputType | null
+  export type AggregateApiKey = {
+    _count: ApiKeyCountAggregateOutputType | null
+    _avg: ApiKeyAvgAggregateOutputType | null
+    _sum: ApiKeySumAggregateOutputType | null
+    _min: ApiKeyMinAggregateOutputType | null
+    _max: ApiKeyMaxAggregateOutputType | null
   }
 
-  export type RefreshTokenAvgAggregateOutputType = {
+  export type ApiKeyAvgAggregateOutputType = {
     id: number | null
     userId: number | null
   }
 
-  export type RefreshTokenSumAggregateOutputType = {
+  export type ApiKeySumAggregateOutputType = {
     id: number | null
     userId: number | null
   }
 
-  export type RefreshTokenMinAggregateOutputType = {
+  export type ApiKeyMinAggregateOutputType = {
     id: number | null
-    hashedToken: string | null
+    name: string | null
+    key: string | null
+    expirationDate: Date | null
     userId: number | null
-    revoked: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
-  export type RefreshTokenMaxAggregateOutputType = {
+  export type ApiKeyMaxAggregateOutputType = {
     id: number | null
-    hashedToken: string | null
+    name: string | null
+    key: string | null
+    expirationDate: Date | null
     userId: number | null
-    revoked: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
-  export type RefreshTokenCountAggregateOutputType = {
+  export type ApiKeyCountAggregateOutputType = {
     id: number
-    hashedToken: number
+    name: number
+    key: number
+    expirationDate: number
     userId: number
-    revoked: number
-    createdAt: number
-    updatedAt: number
     _all: number
   }
 
 
-  export type RefreshTokenAvgAggregateInputType = {
+  export type ApiKeyAvgAggregateInputType = {
     id?: true
     userId?: true
   }
 
-  export type RefreshTokenSumAggregateInputType = {
+  export type ApiKeySumAggregateInputType = {
     id?: true
     userId?: true
   }
 
-  export type RefreshTokenMinAggregateInputType = {
+  export type ApiKeyMinAggregateInputType = {
     id?: true
-    hashedToken?: true
+    name?: true
+    key?: true
+    expirationDate?: true
     userId?: true
-    revoked?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
-  export type RefreshTokenMaxAggregateInputType = {
+  export type ApiKeyMaxAggregateInputType = {
     id?: true
-    hashedToken?: true
+    name?: true
+    key?: true
+    expirationDate?: true
     userId?: true
-    revoked?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
-  export type RefreshTokenCountAggregateInputType = {
+  export type ApiKeyCountAggregateInputType = {
     id?: true
-    hashedToken?: true
+    name?: true
+    key?: true
+    expirationDate?: true
     userId?: true
-    revoked?: true
-    createdAt?: true
-    updatedAt?: true
     _all?: true
   }
 
-  export type RefreshTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which RefreshToken to aggregate.
+     * Filter which ApiKey to aggregate.
      */
-    where?: RefreshTokenWhereInput
+    where?: ApiKeyWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of RefreshTokens to fetch.
+     * Determine the order of ApiKeys to fetch.
      */
-    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    orderBy?: ApiKeyOrderByWithRelationInput | ApiKeyOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: RefreshTokenWhereUniqueInput
+    cursor?: ApiKeyWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` RefreshTokens from the position of the cursor.
+     * Take `±n` ApiKeys from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` RefreshTokens.
+     * Skip the first `n` ApiKeys.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned RefreshTokens
+     * Count returned ApiKeys
     **/
-    _count?: true | RefreshTokenCountAggregateInputType
+    _count?: true | ApiKeyCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: RefreshTokenAvgAggregateInputType
+    _avg?: ApiKeyAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: RefreshTokenSumAggregateInputType
+    _sum?: ApiKeySumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: RefreshTokenMinAggregateInputType
+    _min?: ApiKeyMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: RefreshTokenMaxAggregateInputType
+    _max?: ApiKeyMaxAggregateInputType
   }
 
-  export type GetRefreshTokenAggregateType<T extends RefreshTokenAggregateArgs> = {
-        [P in keyof T & keyof AggregateRefreshToken]: P extends '_count' | 'count'
+  export type GetApiKeyAggregateType<T extends ApiKeyAggregateArgs> = {
+        [P in keyof T & keyof AggregateApiKey]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateRefreshToken[P]>
-      : GetScalarType<T[P], AggregateRefreshToken[P]>
+        : GetScalarType<T[P], AggregateApiKey[P]>
+      : GetScalarType<T[P], AggregateApiKey[P]>
   }
 
 
 
 
-  export type RefreshTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RefreshTokenWhereInput
-    orderBy?: RefreshTokenOrderByWithAggregationInput | RefreshTokenOrderByWithAggregationInput[]
-    by: RefreshTokenScalarFieldEnum[] | RefreshTokenScalarFieldEnum
-    having?: RefreshTokenScalarWhereWithAggregatesInput
+  export type ApiKeyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApiKeyWhereInput
+    orderBy?: ApiKeyOrderByWithAggregationInput | ApiKeyOrderByWithAggregationInput[]
+    by: ApiKeyScalarFieldEnum[] | ApiKeyScalarFieldEnum
+    having?: ApiKeyScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: RefreshTokenCountAggregateInputType | true
-    _avg?: RefreshTokenAvgAggregateInputType
-    _sum?: RefreshTokenSumAggregateInputType
-    _min?: RefreshTokenMinAggregateInputType
-    _max?: RefreshTokenMaxAggregateInputType
+    _count?: ApiKeyCountAggregateInputType | true
+    _avg?: ApiKeyAvgAggregateInputType
+    _sum?: ApiKeySumAggregateInputType
+    _min?: ApiKeyMinAggregateInputType
+    _max?: ApiKeyMaxAggregateInputType
   }
 
-  export type RefreshTokenGroupByOutputType = {
+  export type ApiKeyGroupByOutputType = {
     id: number
-    hashedToken: string
+    name: string
+    key: string
+    expirationDate: Date
     userId: number
-    revoked: boolean
-    createdAt: Date
-    updatedAt: Date
-    _count: RefreshTokenCountAggregateOutputType | null
-    _avg: RefreshTokenAvgAggregateOutputType | null
-    _sum: RefreshTokenSumAggregateOutputType | null
-    _min: RefreshTokenMinAggregateOutputType | null
-    _max: RefreshTokenMaxAggregateOutputType | null
+    _count: ApiKeyCountAggregateOutputType | null
+    _avg: ApiKeyAvgAggregateOutputType | null
+    _sum: ApiKeySumAggregateOutputType | null
+    _min: ApiKeyMinAggregateOutputType | null
+    _max: ApiKeyMaxAggregateOutputType | null
   }
 
-  type GetRefreshTokenGroupByPayload<T extends RefreshTokenGroupByArgs> = Prisma.PrismaPromise<
+  type GetApiKeyGroupByPayload<T extends ApiKeyGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<RefreshTokenGroupByOutputType, T['by']> &
+      PickEnumerable<ApiKeyGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof RefreshTokenGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ApiKeyGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], RefreshTokenGroupByOutputType[P]>
-            : GetScalarType<T[P], RefreshTokenGroupByOutputType[P]>
+              : GetScalarType<T[P], ApiKeyGroupByOutputType[P]>
+            : GetScalarType<T[P], ApiKeyGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type RefreshTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ApiKeySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    hashedToken?: boolean
+    name?: boolean
+    key?: boolean
+    expirationDate?: boolean
     userId?: boolean
-    revoked?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["refreshToken"]>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiKey"]>
 
-  export type RefreshTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ApiKeySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    hashedToken?: boolean
+    name?: boolean
+    key?: boolean
+    expirationDate?: boolean
     userId?: boolean
-    revoked?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["refreshToken"]>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiKey"]>
 
-  export type RefreshTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ApiKeySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    hashedToken?: boolean
+    name?: boolean
+    key?: boolean
+    expirationDate?: boolean
     userId?: boolean
-    revoked?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["refreshToken"]>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiKey"]>
 
-  export type RefreshTokenSelectScalar = {
+  export type ApiKeySelectScalar = {
     id?: boolean
-    hashedToken?: boolean
+    name?: boolean
+    key?: boolean
+    expirationDate?: boolean
     userId?: boolean
-    revoked?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }
 
-  export type RefreshTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "hashedToken" | "userId" | "revoked" | "createdAt" | "updatedAt", ExtArgs["result"]["refreshToken"]>
-  export type RefreshTokenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+  export type ApiKeyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "key" | "expirationDate" | "userId", ExtArgs["result"]["apiKey"]>
+  export type ApiKeyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type RefreshTokenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+  export type ApiKeyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type RefreshTokenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+  export type ApiKeyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
-  export type $RefreshTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "RefreshToken"
+  export type $ApiKeyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ApiKey"
     objects: {
-      User: Prisma.$UserPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      hashedToken: string
+      name: string
+      key: string
+      expirationDate: Date
       userId: number
-      revoked: boolean
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["refreshToken"]>
+    }, ExtArgs["result"]["apiKey"]>
     composites: {}
   }
 
-  type RefreshTokenGetPayload<S extends boolean | null | undefined | RefreshTokenDefaultArgs> = $Result.GetResult<Prisma.$RefreshTokenPayload, S>
+  type ApiKeyGetPayload<S extends boolean | null | undefined | ApiKeyDefaultArgs> = $Result.GetResult<Prisma.$ApiKeyPayload, S>
 
-  type RefreshTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<RefreshTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: RefreshTokenCountAggregateInputType | true
+  type ApiKeyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ApiKeyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ApiKeyCountAggregateInputType | true
     }
 
-  export interface RefreshTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RefreshToken'], meta: { name: 'RefreshToken' } }
+  export interface ApiKeyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApiKey'], meta: { name: 'ApiKey' } }
     /**
-     * Find zero or one RefreshToken that matches the filter.
-     * @param {RefreshTokenFindUniqueArgs} args - Arguments to find a RefreshToken
+     * Find zero or one ApiKey that matches the filter.
+     * @param {ApiKeyFindUniqueArgs} args - Arguments to find a ApiKey
      * @example
-     * // Get one RefreshToken
-     * const refreshToken = await prisma.refreshToken.findUnique({
+     * // Get one ApiKey
+     * const apiKey = await prisma.apiKey.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends RefreshTokenFindUniqueArgs>(args: SelectSubset<T, RefreshTokenFindUniqueArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ApiKeyFindUniqueArgs>(args: SelectSubset<T, ApiKeyFindUniqueArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one RefreshToken that matches the filter or throw an error with `error.code='P2025'`
+     * Find one ApiKey that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {RefreshTokenFindUniqueOrThrowArgs} args - Arguments to find a RefreshToken
+     * @param {ApiKeyFindUniqueOrThrowArgs} args - Arguments to find a ApiKey
      * @example
-     * // Get one RefreshToken
-     * const refreshToken = await prisma.refreshToken.findUniqueOrThrow({
+     * // Get one ApiKey
+     * const apiKey = await prisma.apiKey.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends RefreshTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, RefreshTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ApiKeyFindUniqueOrThrowArgs>(args: SelectSubset<T, ApiKeyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first RefreshToken that matches the filter.
+     * Find the first ApiKey that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RefreshTokenFindFirstArgs} args - Arguments to find a RefreshToken
+     * @param {ApiKeyFindFirstArgs} args - Arguments to find a ApiKey
      * @example
-     * // Get one RefreshToken
-     * const refreshToken = await prisma.refreshToken.findFirst({
+     * // Get one ApiKey
+     * const apiKey = await prisma.apiKey.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends RefreshTokenFindFirstArgs>(args?: SelectSubset<T, RefreshTokenFindFirstArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ApiKeyFindFirstArgs>(args?: SelectSubset<T, ApiKeyFindFirstArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first RefreshToken that matches the filter or
+     * Find the first ApiKey that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RefreshTokenFindFirstOrThrowArgs} args - Arguments to find a RefreshToken
+     * @param {ApiKeyFindFirstOrThrowArgs} args - Arguments to find a ApiKey
      * @example
-     * // Get one RefreshToken
-     * const refreshToken = await prisma.refreshToken.findFirstOrThrow({
+     * // Get one ApiKey
+     * const apiKey = await prisma.apiKey.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends RefreshTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, RefreshTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ApiKeyFindFirstOrThrowArgs>(args?: SelectSubset<T, ApiKeyFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more RefreshTokens that matches the filter.
+     * Find zero or more ApiKeys that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RefreshTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ApiKeyFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all RefreshTokens
-     * const refreshTokens = await prisma.refreshToken.findMany()
+     * // Get all ApiKeys
+     * const apiKeys = await prisma.apiKey.findMany()
      * 
-     * // Get first 10 RefreshTokens
-     * const refreshTokens = await prisma.refreshToken.findMany({ take: 10 })
+     * // Get first 10 ApiKeys
+     * const apiKeys = await prisma.apiKey.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const refreshTokenWithIdOnly = await prisma.refreshToken.findMany({ select: { id: true } })
+     * const apiKeyWithIdOnly = await prisma.apiKey.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends RefreshTokenFindManyArgs>(args?: SelectSubset<T, RefreshTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ApiKeyFindManyArgs>(args?: SelectSubset<T, ApiKeyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a RefreshToken.
-     * @param {RefreshTokenCreateArgs} args - Arguments to create a RefreshToken.
+     * Create a ApiKey.
+     * @param {ApiKeyCreateArgs} args - Arguments to create a ApiKey.
      * @example
-     * // Create one RefreshToken
-     * const RefreshToken = await prisma.refreshToken.create({
+     * // Create one ApiKey
+     * const ApiKey = await prisma.apiKey.create({
      *   data: {
-     *     // ... data to create a RefreshToken
+     *     // ... data to create a ApiKey
      *   }
      * })
      * 
      */
-    create<T extends RefreshTokenCreateArgs>(args: SelectSubset<T, RefreshTokenCreateArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ApiKeyCreateArgs>(args: SelectSubset<T, ApiKeyCreateArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many RefreshTokens.
-     * @param {RefreshTokenCreateManyArgs} args - Arguments to create many RefreshTokens.
+     * Create many ApiKeys.
+     * @param {ApiKeyCreateManyArgs} args - Arguments to create many ApiKeys.
      * @example
-     * // Create many RefreshTokens
-     * const refreshToken = await prisma.refreshToken.createMany({
+     * // Create many ApiKeys
+     * const apiKey = await prisma.apiKey.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends RefreshTokenCreateManyArgs>(args?: SelectSubset<T, RefreshTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ApiKeyCreateManyArgs>(args?: SelectSubset<T, ApiKeyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many RefreshTokens and returns the data saved in the database.
-     * @param {RefreshTokenCreateManyAndReturnArgs} args - Arguments to create many RefreshTokens.
+     * Create many ApiKeys and returns the data saved in the database.
+     * @param {ApiKeyCreateManyAndReturnArgs} args - Arguments to create many ApiKeys.
      * @example
-     * // Create many RefreshTokens
-     * const refreshToken = await prisma.refreshToken.createManyAndReturn({
+     * // Create many ApiKeys
+     * const apiKey = await prisma.apiKey.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many RefreshTokens and only return the `id`
-     * const refreshTokenWithIdOnly = await prisma.refreshToken.createManyAndReturn({
+     * // Create many ApiKeys and only return the `id`
+     * const apiKeyWithIdOnly = await prisma.apiKey.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -2743,28 +2731,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends RefreshTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, RefreshTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ApiKeyCreateManyAndReturnArgs>(args?: SelectSubset<T, ApiKeyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a RefreshToken.
-     * @param {RefreshTokenDeleteArgs} args - Arguments to delete one RefreshToken.
+     * Delete a ApiKey.
+     * @param {ApiKeyDeleteArgs} args - Arguments to delete one ApiKey.
      * @example
-     * // Delete one RefreshToken
-     * const RefreshToken = await prisma.refreshToken.delete({
+     * // Delete one ApiKey
+     * const ApiKey = await prisma.apiKey.delete({
      *   where: {
-     *     // ... filter to delete one RefreshToken
+     *     // ... filter to delete one ApiKey
      *   }
      * })
      * 
      */
-    delete<T extends RefreshTokenDeleteArgs>(args: SelectSubset<T, RefreshTokenDeleteArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ApiKeyDeleteArgs>(args: SelectSubset<T, ApiKeyDeleteArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one RefreshToken.
-     * @param {RefreshTokenUpdateArgs} args - Arguments to update one RefreshToken.
+     * Update one ApiKey.
+     * @param {ApiKeyUpdateArgs} args - Arguments to update one ApiKey.
      * @example
-     * // Update one RefreshToken
-     * const refreshToken = await prisma.refreshToken.update({
+     * // Update one ApiKey
+     * const apiKey = await prisma.apiKey.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2774,30 +2762,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends RefreshTokenUpdateArgs>(args: SelectSubset<T, RefreshTokenUpdateArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ApiKeyUpdateArgs>(args: SelectSubset<T, ApiKeyUpdateArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more RefreshTokens.
-     * @param {RefreshTokenDeleteManyArgs} args - Arguments to filter RefreshTokens to delete.
+     * Delete zero or more ApiKeys.
+     * @param {ApiKeyDeleteManyArgs} args - Arguments to filter ApiKeys to delete.
      * @example
-     * // Delete a few RefreshTokens
-     * const { count } = await prisma.refreshToken.deleteMany({
+     * // Delete a few ApiKeys
+     * const { count } = await prisma.apiKey.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends RefreshTokenDeleteManyArgs>(args?: SelectSubset<T, RefreshTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ApiKeyDeleteManyArgs>(args?: SelectSubset<T, ApiKeyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more RefreshTokens.
+     * Update zero or more ApiKeys.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RefreshTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ApiKeyUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many RefreshTokens
-     * const refreshToken = await prisma.refreshToken.updateMany({
+     * // Update many ApiKeys
+     * const apiKey = await prisma.apiKey.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2807,14 +2795,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends RefreshTokenUpdateManyArgs>(args: SelectSubset<T, RefreshTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ApiKeyUpdateManyArgs>(args: SelectSubset<T, ApiKeyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more RefreshTokens and returns the data updated in the database.
-     * @param {RefreshTokenUpdateManyAndReturnArgs} args - Arguments to update many RefreshTokens.
+     * Update zero or more ApiKeys and returns the data updated in the database.
+     * @param {ApiKeyUpdateManyAndReturnArgs} args - Arguments to update many ApiKeys.
      * @example
-     * // Update many RefreshTokens
-     * const refreshToken = await prisma.refreshToken.updateManyAndReturn({
+     * // Update many ApiKeys
+     * const apiKey = await prisma.apiKey.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2823,8 +2811,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more RefreshTokens and only return the `id`
-     * const refreshTokenWithIdOnly = await prisma.refreshToken.updateManyAndReturn({
+     * // Update zero or more ApiKeys and only return the `id`
+     * const apiKeyWithIdOnly = await prisma.apiKey.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -2837,56 +2825,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends RefreshTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, RefreshTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ApiKeyUpdateManyAndReturnArgs>(args: SelectSubset<T, ApiKeyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one RefreshToken.
-     * @param {RefreshTokenUpsertArgs} args - Arguments to update or create a RefreshToken.
+     * Create or update one ApiKey.
+     * @param {ApiKeyUpsertArgs} args - Arguments to update or create a ApiKey.
      * @example
-     * // Update or create a RefreshToken
-     * const refreshToken = await prisma.refreshToken.upsert({
+     * // Update or create a ApiKey
+     * const apiKey = await prisma.apiKey.upsert({
      *   create: {
-     *     // ... data to create a RefreshToken
+     *     // ... data to create a ApiKey
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the RefreshToken we want to update
+     *     // ... the filter for the ApiKey we want to update
      *   }
      * })
      */
-    upsert<T extends RefreshTokenUpsertArgs>(args: SelectSubset<T, RefreshTokenUpsertArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ApiKeyUpsertArgs>(args: SelectSubset<T, ApiKeyUpsertArgs<ExtArgs>>): Prisma__ApiKeyClient<$Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of RefreshTokens.
+     * Count the number of ApiKeys.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RefreshTokenCountArgs} args - Arguments to filter RefreshTokens to count.
+     * @param {ApiKeyCountArgs} args - Arguments to filter ApiKeys to count.
      * @example
-     * // Count the number of RefreshTokens
-     * const count = await prisma.refreshToken.count({
+     * // Count the number of ApiKeys
+     * const count = await prisma.apiKey.count({
      *   where: {
-     *     // ... the filter for the RefreshTokens we want to count
+     *     // ... the filter for the ApiKeys we want to count
      *   }
      * })
     **/
-    count<T extends RefreshTokenCountArgs>(
-      args?: Subset<T, RefreshTokenCountArgs>,
+    count<T extends ApiKeyCountArgs>(
+      args?: Subset<T, ApiKeyCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], RefreshTokenCountAggregateOutputType>
+          : GetScalarType<T['select'], ApiKeyCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a RefreshToken.
+     * Allows you to perform aggregations operations on a ApiKey.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RefreshTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ApiKeyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2906,13 +2894,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends RefreshTokenAggregateArgs>(args: Subset<T, RefreshTokenAggregateArgs>): Prisma.PrismaPromise<GetRefreshTokenAggregateType<T>>
+    aggregate<T extends ApiKeyAggregateArgs>(args: Subset<T, ApiKeyAggregateArgs>): Prisma.PrismaPromise<GetApiKeyAggregateType<T>>
 
     /**
-     * Group by RefreshToken.
+     * Group by ApiKey.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RefreshTokenGroupByArgs} args - Group by arguments.
+     * @param {ApiKeyGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2927,14 +2915,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends RefreshTokenGroupByArgs,
+      T extends ApiKeyGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: RefreshTokenGroupByArgs['orderBy'] }
-        : { orderBy?: RefreshTokenGroupByArgs['orderBy'] },
+        ? { orderBy: ApiKeyGroupByArgs['orderBy'] }
+        : { orderBy?: ApiKeyGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2983,22 +2971,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, RefreshTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRefreshTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ApiKeyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApiKeyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the RefreshToken model
+   * Fields of the ApiKey model
    */
-  readonly fields: RefreshTokenFieldRefs;
+  readonly fields: ApiKeyFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for RefreshToken.
+   * The delegate class that acts as a "Promise-like" for ApiKey.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__RefreshTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ApiKeyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3025,424 +3013,423 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the RefreshToken model
+   * Fields of the ApiKey model
    */
-  interface RefreshTokenFieldRefs {
-    readonly id: FieldRef<"RefreshToken", 'Int'>
-    readonly hashedToken: FieldRef<"RefreshToken", 'String'>
-    readonly userId: FieldRef<"RefreshToken", 'Int'>
-    readonly revoked: FieldRef<"RefreshToken", 'Boolean'>
-    readonly createdAt: FieldRef<"RefreshToken", 'DateTime'>
-    readonly updatedAt: FieldRef<"RefreshToken", 'DateTime'>
+  interface ApiKeyFieldRefs {
+    readonly id: FieldRef<"ApiKey", 'Int'>
+    readonly name: FieldRef<"ApiKey", 'String'>
+    readonly key: FieldRef<"ApiKey", 'String'>
+    readonly expirationDate: FieldRef<"ApiKey", 'DateTime'>
+    readonly userId: FieldRef<"ApiKey", 'Int'>
   }
     
 
   // Custom InputTypes
   /**
-   * RefreshToken findUnique
+   * ApiKey findUnique
    */
-  export type RefreshTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelect<ExtArgs> | null
+    select?: ApiKeySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenInclude<ExtArgs> | null
+    include?: ApiKeyInclude<ExtArgs> | null
     /**
-     * Filter, which RefreshToken to fetch.
+     * Filter, which ApiKey to fetch.
      */
-    where: RefreshTokenWhereUniqueInput
+    where: ApiKeyWhereUniqueInput
   }
 
   /**
-   * RefreshToken findUniqueOrThrow
+   * ApiKey findUniqueOrThrow
    */
-  export type RefreshTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelect<ExtArgs> | null
+    select?: ApiKeySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenInclude<ExtArgs> | null
+    include?: ApiKeyInclude<ExtArgs> | null
     /**
-     * Filter, which RefreshToken to fetch.
+     * Filter, which ApiKey to fetch.
      */
-    where: RefreshTokenWhereUniqueInput
+    where: ApiKeyWhereUniqueInput
   }
 
   /**
-   * RefreshToken findFirst
+   * ApiKey findFirst
    */
-  export type RefreshTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelect<ExtArgs> | null
+    select?: ApiKeySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenInclude<ExtArgs> | null
+    include?: ApiKeyInclude<ExtArgs> | null
     /**
-     * Filter, which RefreshToken to fetch.
+     * Filter, which ApiKey to fetch.
      */
-    where?: RefreshTokenWhereInput
+    where?: ApiKeyWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of RefreshTokens to fetch.
+     * Determine the order of ApiKeys to fetch.
      */
-    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    orderBy?: ApiKeyOrderByWithRelationInput | ApiKeyOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for RefreshTokens.
+     * Sets the position for searching for ApiKeys.
      */
-    cursor?: RefreshTokenWhereUniqueInput
+    cursor?: ApiKeyWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` RefreshTokens from the position of the cursor.
+     * Take `±n` ApiKeys from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` RefreshTokens.
+     * Skip the first `n` ApiKeys.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of RefreshTokens.
+     * Filter by unique combinations of ApiKeys.
      */
-    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+    distinct?: ApiKeyScalarFieldEnum | ApiKeyScalarFieldEnum[]
   }
 
   /**
-   * RefreshToken findFirstOrThrow
+   * ApiKey findFirstOrThrow
    */
-  export type RefreshTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelect<ExtArgs> | null
+    select?: ApiKeySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenInclude<ExtArgs> | null
+    include?: ApiKeyInclude<ExtArgs> | null
     /**
-     * Filter, which RefreshToken to fetch.
+     * Filter, which ApiKey to fetch.
      */
-    where?: RefreshTokenWhereInput
+    where?: ApiKeyWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of RefreshTokens to fetch.
+     * Determine the order of ApiKeys to fetch.
      */
-    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    orderBy?: ApiKeyOrderByWithRelationInput | ApiKeyOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for RefreshTokens.
+     * Sets the position for searching for ApiKeys.
      */
-    cursor?: RefreshTokenWhereUniqueInput
+    cursor?: ApiKeyWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` RefreshTokens from the position of the cursor.
+     * Take `±n` ApiKeys from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` RefreshTokens.
+     * Skip the first `n` ApiKeys.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of RefreshTokens.
+     * Filter by unique combinations of ApiKeys.
      */
-    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+    distinct?: ApiKeyScalarFieldEnum | ApiKeyScalarFieldEnum[]
   }
 
   /**
-   * RefreshToken findMany
+   * ApiKey findMany
    */
-  export type RefreshTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelect<ExtArgs> | null
+    select?: ApiKeySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenInclude<ExtArgs> | null
+    include?: ApiKeyInclude<ExtArgs> | null
     /**
-     * Filter, which RefreshTokens to fetch.
+     * Filter, which ApiKeys to fetch.
      */
-    where?: RefreshTokenWhereInput
+    where?: ApiKeyWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of RefreshTokens to fetch.
+     * Determine the order of ApiKeys to fetch.
      */
-    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    orderBy?: ApiKeyOrderByWithRelationInput | ApiKeyOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing RefreshTokens.
+     * Sets the position for listing ApiKeys.
      */
-    cursor?: RefreshTokenWhereUniqueInput
+    cursor?: ApiKeyWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` RefreshTokens from the position of the cursor.
+     * Take `±n` ApiKeys from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` RefreshTokens.
+     * Skip the first `n` ApiKeys.
      */
     skip?: number
-    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+    distinct?: ApiKeyScalarFieldEnum | ApiKeyScalarFieldEnum[]
   }
 
   /**
-   * RefreshToken create
+   * ApiKey create
    */
-  export type RefreshTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelect<ExtArgs> | null
+    select?: ApiKeySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenInclude<ExtArgs> | null
+    include?: ApiKeyInclude<ExtArgs> | null
     /**
-     * The data needed to create a RefreshToken.
+     * The data needed to create a ApiKey.
      */
-    data: XOR<RefreshTokenCreateInput, RefreshTokenUncheckedCreateInput>
+    data: XOR<ApiKeyCreateInput, ApiKeyUncheckedCreateInput>
   }
 
   /**
-   * RefreshToken createMany
+   * ApiKey createMany
    */
-  export type RefreshTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many RefreshTokens.
+     * The data used to create many ApiKeys.
      */
-    data: RefreshTokenCreateManyInput | RefreshTokenCreateManyInput[]
+    data: ApiKeyCreateManyInput | ApiKeyCreateManyInput[]
   }
 
   /**
-   * RefreshToken createManyAndReturn
+   * ApiKey createManyAndReturn
    */
-  export type RefreshTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ApiKeySelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
-     * The data used to create many RefreshTokens.
+     * The data used to create many ApiKeys.
      */
-    data: RefreshTokenCreateManyInput | RefreshTokenCreateManyInput[]
+    data: ApiKeyCreateManyInput | ApiKeyCreateManyInput[]
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: ApiKeyIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * RefreshToken update
+   * ApiKey update
    */
-  export type RefreshTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelect<ExtArgs> | null
+    select?: ApiKeySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenInclude<ExtArgs> | null
+    include?: ApiKeyInclude<ExtArgs> | null
     /**
-     * The data needed to update a RefreshToken.
+     * The data needed to update a ApiKey.
      */
-    data: XOR<RefreshTokenUpdateInput, RefreshTokenUncheckedUpdateInput>
+    data: XOR<ApiKeyUpdateInput, ApiKeyUncheckedUpdateInput>
     /**
-     * Choose, which RefreshToken to update.
+     * Choose, which ApiKey to update.
      */
-    where: RefreshTokenWhereUniqueInput
+    where: ApiKeyWhereUniqueInput
   }
 
   /**
-   * RefreshToken updateMany
+   * ApiKey updateMany
    */
-  export type RefreshTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update RefreshTokens.
+     * The data used to update ApiKeys.
      */
-    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyInput>
+    data: XOR<ApiKeyUpdateManyMutationInput, ApiKeyUncheckedUpdateManyInput>
     /**
-     * Filter which RefreshTokens to update
+     * Filter which ApiKeys to update
      */
-    where?: RefreshTokenWhereInput
+    where?: ApiKeyWhereInput
     /**
-     * Limit how many RefreshTokens to update.
+     * Limit how many ApiKeys to update.
      */
     limit?: number
   }
 
   /**
-   * RefreshToken updateManyAndReturn
+   * ApiKey updateManyAndReturn
    */
-  export type RefreshTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ApiKeySelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
-     * The data used to update RefreshTokens.
+     * The data used to update ApiKeys.
      */
-    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyInput>
+    data: XOR<ApiKeyUpdateManyMutationInput, ApiKeyUncheckedUpdateManyInput>
     /**
-     * Filter which RefreshTokens to update
+     * Filter which ApiKeys to update
      */
-    where?: RefreshTokenWhereInput
+    where?: ApiKeyWhereInput
     /**
-     * Limit how many RefreshTokens to update.
+     * Limit how many ApiKeys to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: ApiKeyIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * RefreshToken upsert
+   * ApiKey upsert
    */
-  export type RefreshTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelect<ExtArgs> | null
+    select?: ApiKeySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenInclude<ExtArgs> | null
+    include?: ApiKeyInclude<ExtArgs> | null
     /**
-     * The filter to search for the RefreshToken to update in case it exists.
+     * The filter to search for the ApiKey to update in case it exists.
      */
-    where: RefreshTokenWhereUniqueInput
+    where: ApiKeyWhereUniqueInput
     /**
-     * In case the RefreshToken found by the `where` argument doesn't exist, create a new RefreshToken with this data.
+     * In case the ApiKey found by the `where` argument doesn't exist, create a new ApiKey with this data.
      */
-    create: XOR<RefreshTokenCreateInput, RefreshTokenUncheckedCreateInput>
+    create: XOR<ApiKeyCreateInput, ApiKeyUncheckedCreateInput>
     /**
-     * In case the RefreshToken was found with the provided `where` argument, update it with this data.
+     * In case the ApiKey was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<RefreshTokenUpdateInput, RefreshTokenUncheckedUpdateInput>
+    update: XOR<ApiKeyUpdateInput, ApiKeyUncheckedUpdateInput>
   }
 
   /**
-   * RefreshToken delete
+   * ApiKey delete
    */
-  export type RefreshTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelect<ExtArgs> | null
+    select?: ApiKeySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenInclude<ExtArgs> | null
+    include?: ApiKeyInclude<ExtArgs> | null
     /**
-     * Filter which RefreshToken to delete.
+     * Filter which ApiKey to delete.
      */
-    where: RefreshTokenWhereUniqueInput
+    where: ApiKeyWhereUniqueInput
   }
 
   /**
-   * RefreshToken deleteMany
+   * ApiKey deleteMany
    */
-  export type RefreshTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which RefreshTokens to delete
+     * Filter which ApiKeys to delete
      */
-    where?: RefreshTokenWhereInput
+    where?: ApiKeyWhereInput
     /**
-     * Limit how many RefreshTokens to delete.
+     * Limit how many ApiKeys to delete.
      */
     limit?: number
   }
 
   /**
-   * RefreshToken without action
+   * ApiKey without action
    */
-  export type RefreshTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ApiKeyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RefreshToken
+     * Select specific fields to fetch from the ApiKey
      */
-    select?: RefreshTokenSelect<ExtArgs> | null
+    select?: ApiKeySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RefreshToken
+     * Omit specific fields from the ApiKey
      */
-    omit?: RefreshTokenOmit<ExtArgs> | null
+    omit?: ApiKeyOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RefreshTokenInclude<ExtArgs> | null
+    include?: ApiKeyInclude<ExtArgs> | null
   }
 
 
@@ -4667,16 +4654,15 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const RefreshTokenScalarFieldEnum: {
+  export const ApiKeyScalarFieldEnum: {
     id: 'id',
-    hashedToken: 'hashedToken',
-    userId: 'userId',
-    revoked: 'revoked',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    name: 'name',
+    key: 'key',
+    expirationDate: 'expirationDate',
+    userId: 'userId'
   };
 
-  export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+  export type ApiKeyScalarFieldEnum = (typeof ApiKeyScalarFieldEnum)[keyof typeof ApiKeyScalarFieldEnum]
 
 
   export const TransactionScalarFieldEnum: {
@@ -4744,13 +4730,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'Currency'
    */
   export type EnumCurrencyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Currency'>
@@ -4786,9 +4765,9 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     publicKey?: StringFilter<"User"> | string
     privateKey?: StringFilter<"User"> | string
-    refreshTokens?: RefreshTokenListRelationFilter
     sentTransactions?: TransactionListRelationFilter
     receivedTransactions?: TransactionListRelationFilter
+    apiKeys?: ApiKeyListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -4800,9 +4779,9 @@ export namespace Prisma {
     role?: SortOrder
     publicKey?: SortOrder
     privateKey?: SortOrder
-    refreshTokens?: RefreshTokenOrderByRelationAggregateInput
     sentTransactions?: TransactionOrderByRelationAggregateInput
     receivedTransactions?: TransactionOrderByRelationAggregateInput
+    apiKeys?: ApiKeyOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -4817,9 +4796,9 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     publicKey?: StringFilter<"User"> | string
     privateKey?: StringFilter<"User"> | string
-    refreshTokens?: RefreshTokenListRelationFilter
     sentTransactions?: TransactionListRelationFilter
     receivedTransactions?: TransactionListRelationFilter
+    apiKeys?: ApiKeyListRelationFilter
   }, "id" | "name">
 
   export type UserOrderByWithAggregationInput = {
@@ -4852,66 +4831,61 @@ export namespace Prisma {
     privateKey?: StringWithAggregatesFilter<"User"> | string
   }
 
-  export type RefreshTokenWhereInput = {
-    AND?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
-    OR?: RefreshTokenWhereInput[]
-    NOT?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
-    id?: IntFilter<"RefreshToken"> | number
-    hashedToken?: StringFilter<"RefreshToken"> | string
-    userId?: IntFilter<"RefreshToken"> | number
-    revoked?: BoolFilter<"RefreshToken"> | boolean
-    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
-    updatedAt?: DateTimeFilter<"RefreshToken"> | Date | string
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  export type ApiKeyWhereInput = {
+    AND?: ApiKeyWhereInput | ApiKeyWhereInput[]
+    OR?: ApiKeyWhereInput[]
+    NOT?: ApiKeyWhereInput | ApiKeyWhereInput[]
+    id?: IntFilter<"ApiKey"> | number
+    name?: StringFilter<"ApiKey"> | string
+    key?: StringFilter<"ApiKey"> | string
+    expirationDate?: DateTimeFilter<"ApiKey"> | Date | string
+    userId?: IntFilter<"ApiKey"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
-  export type RefreshTokenOrderByWithRelationInput = {
+  export type ApiKeyOrderByWithRelationInput = {
     id?: SortOrder
-    hashedToken?: SortOrder
+    name?: SortOrder
+    key?: SortOrder
+    expirationDate?: SortOrder
     userId?: SortOrder
-    revoked?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    User?: UserOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
-  export type RefreshTokenWhereUniqueInput = Prisma.AtLeast<{
+  export type ApiKeyWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
-    OR?: RefreshTokenWhereInput[]
-    NOT?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
-    hashedToken?: StringFilter<"RefreshToken"> | string
-    userId?: IntFilter<"RefreshToken"> | number
-    revoked?: BoolFilter<"RefreshToken"> | boolean
-    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
-    updatedAt?: DateTimeFilter<"RefreshToken"> | Date | string
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
+    key?: string
+    AND?: ApiKeyWhereInput | ApiKeyWhereInput[]
+    OR?: ApiKeyWhereInput[]
+    NOT?: ApiKeyWhereInput | ApiKeyWhereInput[]
+    name?: StringFilter<"ApiKey"> | string
+    expirationDate?: DateTimeFilter<"ApiKey"> | Date | string
+    userId?: IntFilter<"ApiKey"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "key">
 
-  export type RefreshTokenOrderByWithAggregationInput = {
+  export type ApiKeyOrderByWithAggregationInput = {
     id?: SortOrder
-    hashedToken?: SortOrder
+    name?: SortOrder
+    key?: SortOrder
+    expirationDate?: SortOrder
     userId?: SortOrder
-    revoked?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: RefreshTokenCountOrderByAggregateInput
-    _avg?: RefreshTokenAvgOrderByAggregateInput
-    _max?: RefreshTokenMaxOrderByAggregateInput
-    _min?: RefreshTokenMinOrderByAggregateInput
-    _sum?: RefreshTokenSumOrderByAggregateInput
+    _count?: ApiKeyCountOrderByAggregateInput
+    _avg?: ApiKeyAvgOrderByAggregateInput
+    _max?: ApiKeyMaxOrderByAggregateInput
+    _min?: ApiKeyMinOrderByAggregateInput
+    _sum?: ApiKeySumOrderByAggregateInput
   }
 
-  export type RefreshTokenScalarWhereWithAggregatesInput = {
-    AND?: RefreshTokenScalarWhereWithAggregatesInput | RefreshTokenScalarWhereWithAggregatesInput[]
-    OR?: RefreshTokenScalarWhereWithAggregatesInput[]
-    NOT?: RefreshTokenScalarWhereWithAggregatesInput | RefreshTokenScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"RefreshToken"> | number
-    hashedToken?: StringWithAggregatesFilter<"RefreshToken"> | string
-    userId?: IntWithAggregatesFilter<"RefreshToken"> | number
-    revoked?: BoolWithAggregatesFilter<"RefreshToken"> | boolean
-    createdAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
+  export type ApiKeyScalarWhereWithAggregatesInput = {
+    AND?: ApiKeyScalarWhereWithAggregatesInput | ApiKeyScalarWhereWithAggregatesInput[]
+    OR?: ApiKeyScalarWhereWithAggregatesInput[]
+    NOT?: ApiKeyScalarWhereWithAggregatesInput | ApiKeyScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ApiKey"> | number
+    name?: StringWithAggregatesFilter<"ApiKey"> | string
+    key?: StringWithAggregatesFilter<"ApiKey"> | string
+    expirationDate?: DateTimeWithAggregatesFilter<"ApiKey"> | Date | string
+    userId?: IntWithAggregatesFilter<"ApiKey"> | number
   }
 
   export type TransactionWhereInput = {
@@ -5002,9 +4976,9 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
-    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
     sentTransactions?: TransactionCreateNestedManyWithoutSenderInput
     receivedTransactions?: TransactionCreateNestedManyWithoutReceiverInput
+    apiKeys?: ApiKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -5016,9 +4990,9 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
-    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
     sentTransactions?: TransactionUncheckedCreateNestedManyWithoutSenderInput
     receivedTransactions?: TransactionUncheckedCreateNestedManyWithoutReceiverInput
+    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -5029,9 +5003,9 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
-    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
     sentTransactions?: TransactionUpdateManyWithoutSenderNestedInput
     receivedTransactions?: TransactionUpdateManyWithoutReceiverNestedInput
+    apiKeys?: ApiKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -5043,9 +5017,9 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
-    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
     sentTransactions?: TransactionUncheckedUpdateManyWithoutSenderNestedInput
     receivedTransactions?: TransactionUncheckedUpdateManyWithoutReceiverNestedInput
+    apiKeys?: ApiKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -5080,63 +5054,56 @@ export namespace Prisma {
     privateKey?: StringFieldUpdateOperationsInput | string
   }
 
-  export type RefreshTokenCreateInput = {
-    hashedToken: string
-    revoked?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    User: UserCreateNestedOneWithoutRefreshTokensInput
+  export type ApiKeyCreateInput = {
+    name: string
+    key: string
+    expirationDate: Date | string
+    user: UserCreateNestedOneWithoutApiKeysInput
   }
 
-  export type RefreshTokenUncheckedCreateInput = {
+  export type ApiKeyUncheckedCreateInput = {
     id?: number
-    hashedToken: string
+    name: string
+    key: string
+    expirationDate: Date | string
     userId: number
-    revoked?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
-  export type RefreshTokenUpdateInput = {
-    hashedToken?: StringFieldUpdateOperationsInput | string
-    revoked?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateOneRequiredWithoutRefreshTokensNestedInput
+  export type ApiKeyUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    expirationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutApiKeysNestedInput
   }
 
-  export type RefreshTokenUncheckedUpdateInput = {
+  export type ApiKeyUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    hashedToken?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    expirationDate?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    revoked?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type RefreshTokenCreateManyInput = {
+  export type ApiKeyCreateManyInput = {
     id?: number
-    hashedToken: string
+    name: string
+    key: string
+    expirationDate: Date | string
     userId: number
-    revoked?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
-  export type RefreshTokenUpdateManyMutationInput = {
-    hashedToken?: StringFieldUpdateOperationsInput | string
-    revoked?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type ApiKeyUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    expirationDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type RefreshTokenUncheckedUpdateManyInput = {
+  export type ApiKeyUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    hashedToken?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    expirationDate?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    revoked?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TransactionCreateInput = {
@@ -5261,23 +5228,23 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
-  export type RefreshTokenListRelationFilter = {
-    every?: RefreshTokenWhereInput
-    some?: RefreshTokenWhereInput
-    none?: RefreshTokenWhereInput
-  }
-
   export type TransactionListRelationFilter = {
     every?: TransactionWhereInput
     some?: TransactionWhereInput
     none?: TransactionWhereInput
   }
 
-  export type RefreshTokenOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type ApiKeyListRelationFilter = {
+    every?: ApiKeyWhereInput
+    some?: ApiKeyWhereInput
+    none?: ApiKeyWhereInput
   }
 
   export type TransactionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ApiKeyOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -5379,59 +5346,43 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
   }
 
-  export type RefreshTokenCountOrderByAggregateInput = {
+  export type ApiKeyCountOrderByAggregateInput = {
     id?: SortOrder
-    hashedToken?: SortOrder
-    userId?: SortOrder
-    revoked?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type RefreshTokenAvgOrderByAggregateInput = {
-    id?: SortOrder
+    name?: SortOrder
+    key?: SortOrder
+    expirationDate?: SortOrder
     userId?: SortOrder
   }
 
-  export type RefreshTokenMaxOrderByAggregateInput = {
-    id?: SortOrder
-    hashedToken?: SortOrder
-    userId?: SortOrder
-    revoked?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type RefreshTokenMinOrderByAggregateInput = {
-    id?: SortOrder
-    hashedToken?: SortOrder
-    userId?: SortOrder
-    revoked?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type RefreshTokenSumOrderByAggregateInput = {
+  export type ApiKeyAvgOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type ApiKeyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    key?: SortOrder
+    expirationDate?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiKeyMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    key?: SortOrder
+    expirationDate?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ApiKeySumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
   }
 
   export type EnumCurrencyFilter<$PrismaModel = never> = {
@@ -5553,13 +5504,6 @@ export namespace Prisma {
     _max?: NestedEnumTransactionStatusFilter<$PrismaModel>
   }
 
-  export type RefreshTokenCreateNestedManyWithoutUserInput = {
-    create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
-    createMany?: RefreshTokenCreateManyUserInputEnvelope
-    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
-  }
-
   export type TransactionCreateNestedManyWithoutSenderInput = {
     create?: XOR<TransactionCreateWithoutSenderInput, TransactionUncheckedCreateWithoutSenderInput> | TransactionCreateWithoutSenderInput[] | TransactionUncheckedCreateWithoutSenderInput[]
     connectOrCreate?: TransactionCreateOrConnectWithoutSenderInput | TransactionCreateOrConnectWithoutSenderInput[]
@@ -5574,11 +5518,11 @@ export namespace Prisma {
     connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
   }
 
-  export type RefreshTokenUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
-    createMany?: RefreshTokenCreateManyUserInputEnvelope
-    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+  export type ApiKeyCreateNestedManyWithoutUserInput = {
+    create?: XOR<ApiKeyCreateWithoutUserInput, ApiKeyUncheckedCreateWithoutUserInput> | ApiKeyCreateWithoutUserInput[] | ApiKeyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiKeyCreateOrConnectWithoutUserInput | ApiKeyCreateOrConnectWithoutUserInput[]
+    createMany?: ApiKeyCreateManyUserInputEnvelope
+    connect?: ApiKeyWhereUniqueInput | ApiKeyWhereUniqueInput[]
   }
 
   export type TransactionUncheckedCreateNestedManyWithoutSenderInput = {
@@ -5595,6 +5539,13 @@ export namespace Prisma {
     connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
   }
 
+  export type ApiKeyUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ApiKeyCreateWithoutUserInput, ApiKeyUncheckedCreateWithoutUserInput> | ApiKeyCreateWithoutUserInput[] | ApiKeyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiKeyCreateOrConnectWithoutUserInput | ApiKeyCreateOrConnectWithoutUserInput[]
+    createMany?: ApiKeyCreateManyUserInputEnvelope
+    connect?: ApiKeyWhereUniqueInput | ApiKeyWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -5605,20 +5556,6 @@ export namespace Prisma {
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
-  }
-
-  export type RefreshTokenUpdateManyWithoutUserNestedInput = {
-    create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
-    upsert?: RefreshTokenUpsertWithWhereUniqueWithoutUserInput | RefreshTokenUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: RefreshTokenCreateManyUserInputEnvelope
-    set?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
-    disconnect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
-    delete?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
-    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
-    update?: RefreshTokenUpdateWithWhereUniqueWithoutUserInput | RefreshTokenUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: RefreshTokenUpdateManyWithWhereWithoutUserInput | RefreshTokenUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
   }
 
   export type TransactionUpdateManyWithoutSenderNestedInput = {
@@ -5649,26 +5586,26 @@ export namespace Prisma {
     deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
   }
 
+  export type ApiKeyUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ApiKeyCreateWithoutUserInput, ApiKeyUncheckedCreateWithoutUserInput> | ApiKeyCreateWithoutUserInput[] | ApiKeyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiKeyCreateOrConnectWithoutUserInput | ApiKeyCreateOrConnectWithoutUserInput[]
+    upsert?: ApiKeyUpsertWithWhereUniqueWithoutUserInput | ApiKeyUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ApiKeyCreateManyUserInputEnvelope
+    set?: ApiKeyWhereUniqueInput | ApiKeyWhereUniqueInput[]
+    disconnect?: ApiKeyWhereUniqueInput | ApiKeyWhereUniqueInput[]
+    delete?: ApiKeyWhereUniqueInput | ApiKeyWhereUniqueInput[]
+    connect?: ApiKeyWhereUniqueInput | ApiKeyWhereUniqueInput[]
+    update?: ApiKeyUpdateWithWhereUniqueWithoutUserInput | ApiKeyUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ApiKeyUpdateManyWithWhereWithoutUserInput | ApiKeyUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ApiKeyScalarWhereInput | ApiKeyScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type RefreshTokenUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
-    upsert?: RefreshTokenUpsertWithWhereUniqueWithoutUserInput | RefreshTokenUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: RefreshTokenCreateManyUserInputEnvelope
-    set?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
-    disconnect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
-    delete?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
-    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
-    update?: RefreshTokenUpdateWithWhereUniqueWithoutUserInput | RefreshTokenUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: RefreshTokenUpdateManyWithWhereWithoutUserInput | RefreshTokenUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
   }
 
   export type TransactionUncheckedUpdateManyWithoutSenderNestedInput = {
@@ -5699,22 +5636,32 @@ export namespace Prisma {
     deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutRefreshTokensInput = {
-    create?: XOR<UserCreateWithoutRefreshTokensInput, UserUncheckedCreateWithoutRefreshTokensInput>
-    connectOrCreate?: UserCreateOrConnectWithoutRefreshTokensInput
+  export type ApiKeyUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ApiKeyCreateWithoutUserInput, ApiKeyUncheckedCreateWithoutUserInput> | ApiKeyCreateWithoutUserInput[] | ApiKeyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ApiKeyCreateOrConnectWithoutUserInput | ApiKeyCreateOrConnectWithoutUserInput[]
+    upsert?: ApiKeyUpsertWithWhereUniqueWithoutUserInput | ApiKeyUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ApiKeyCreateManyUserInputEnvelope
+    set?: ApiKeyWhereUniqueInput | ApiKeyWhereUniqueInput[]
+    disconnect?: ApiKeyWhereUniqueInput | ApiKeyWhereUniqueInput[]
+    delete?: ApiKeyWhereUniqueInput | ApiKeyWhereUniqueInput[]
+    connect?: ApiKeyWhereUniqueInput | ApiKeyWhereUniqueInput[]
+    update?: ApiKeyUpdateWithWhereUniqueWithoutUserInput | ApiKeyUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ApiKeyUpdateManyWithWhereWithoutUserInput | ApiKeyUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ApiKeyScalarWhereInput | ApiKeyScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutApiKeysInput = {
+    create?: XOR<UserCreateWithoutApiKeysInput, UserUncheckedCreateWithoutApiKeysInput>
+    connectOrCreate?: UserCreateOrConnectWithoutApiKeysInput
     connect?: UserWhereUniqueInput
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
-  export type UserUpdateOneRequiredWithoutRefreshTokensNestedInput = {
-    create?: XOR<UserCreateWithoutRefreshTokensInput, UserUncheckedCreateWithoutRefreshTokensInput>
-    connectOrCreate?: UserCreateOrConnectWithoutRefreshTokensInput
-    upsert?: UserUpsertWithoutRefreshTokensInput
+  export type UserUpdateOneRequiredWithoutApiKeysNestedInput = {
+    create?: XOR<UserCreateWithoutApiKeysInput, UserUncheckedCreateWithoutApiKeysInput>
+    connectOrCreate?: UserCreateOrConnectWithoutApiKeysInput
+    upsert?: UserUpsertWithoutApiKeysInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRefreshTokensInput, UserUpdateWithoutRefreshTokensInput>, UserUncheckedUpdateWithoutRefreshTokensInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutApiKeysInput, UserUpdateWithoutApiKeysInput>, UserUncheckedUpdateWithoutApiKeysInput>
   }
 
   export type UserCreateNestedOneWithoutSentTransactionsInput = {
@@ -5876,19 +5823,6 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type NestedEnumCurrencyFilter<$PrismaModel = never> = {
     equals?: $Enums.Currency | EnumCurrencyFieldRefInput<$PrismaModel>
     in?: $Enums.Currency[]
@@ -5961,30 +5895,6 @@ export namespace Prisma {
     _max?: NestedEnumTransactionStatusFilter<$PrismaModel>
   }
 
-  export type RefreshTokenCreateWithoutUserInput = {
-    hashedToken: string
-    revoked?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type RefreshTokenUncheckedCreateWithoutUserInput = {
-    id?: number
-    hashedToken: string
-    revoked?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type RefreshTokenCreateOrConnectWithoutUserInput = {
-    where: RefreshTokenWhereUniqueInput
-    create: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput>
-  }
-
-  export type RefreshTokenCreateManyUserInputEnvelope = {
-    data: RefreshTokenCreateManyUserInput | RefreshTokenCreateManyUserInput[]
-  }
-
   export type TransactionCreateWithoutSenderInput = {
     amount: string
     currency: $Enums.Currency
@@ -6045,32 +5955,26 @@ export namespace Prisma {
     data: TransactionCreateManyReceiverInput | TransactionCreateManyReceiverInput[]
   }
 
-  export type RefreshTokenUpsertWithWhereUniqueWithoutUserInput = {
-    where: RefreshTokenWhereUniqueInput
-    update: XOR<RefreshTokenUpdateWithoutUserInput, RefreshTokenUncheckedUpdateWithoutUserInput>
-    create: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput>
+  export type ApiKeyCreateWithoutUserInput = {
+    name: string
+    key: string
+    expirationDate: Date | string
   }
 
-  export type RefreshTokenUpdateWithWhereUniqueWithoutUserInput = {
-    where: RefreshTokenWhereUniqueInput
-    data: XOR<RefreshTokenUpdateWithoutUserInput, RefreshTokenUncheckedUpdateWithoutUserInput>
+  export type ApiKeyUncheckedCreateWithoutUserInput = {
+    id?: number
+    name: string
+    key: string
+    expirationDate: Date | string
   }
 
-  export type RefreshTokenUpdateManyWithWhereWithoutUserInput = {
-    where: RefreshTokenScalarWhereInput
-    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyWithoutUserInput>
+  export type ApiKeyCreateOrConnectWithoutUserInput = {
+    where: ApiKeyWhereUniqueInput
+    create: XOR<ApiKeyCreateWithoutUserInput, ApiKeyUncheckedCreateWithoutUserInput>
   }
 
-  export type RefreshTokenScalarWhereInput = {
-    AND?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
-    OR?: RefreshTokenScalarWhereInput[]
-    NOT?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
-    id?: IntFilter<"RefreshToken"> | number
-    hashedToken?: StringFilter<"RefreshToken"> | string
-    userId?: IntFilter<"RefreshToken"> | number
-    revoked?: BoolFilter<"RefreshToken"> | boolean
-    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
-    updatedAt?: DateTimeFilter<"RefreshToken"> | Date | string
+  export type ApiKeyCreateManyUserInputEnvelope = {
+    data: ApiKeyCreateManyUserInput | ApiKeyCreateManyUserInput[]
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutSenderInput = {
@@ -6120,7 +6024,34 @@ export namespace Prisma {
     data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyWithoutReceiverInput>
   }
 
-  export type UserCreateWithoutRefreshTokensInput = {
+  export type ApiKeyUpsertWithWhereUniqueWithoutUserInput = {
+    where: ApiKeyWhereUniqueInput
+    update: XOR<ApiKeyUpdateWithoutUserInput, ApiKeyUncheckedUpdateWithoutUserInput>
+    create: XOR<ApiKeyCreateWithoutUserInput, ApiKeyUncheckedCreateWithoutUserInput>
+  }
+
+  export type ApiKeyUpdateWithWhereUniqueWithoutUserInput = {
+    where: ApiKeyWhereUniqueInput
+    data: XOR<ApiKeyUpdateWithoutUserInput, ApiKeyUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ApiKeyUpdateManyWithWhereWithoutUserInput = {
+    where: ApiKeyScalarWhereInput
+    data: XOR<ApiKeyUpdateManyMutationInput, ApiKeyUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ApiKeyScalarWhereInput = {
+    AND?: ApiKeyScalarWhereInput | ApiKeyScalarWhereInput[]
+    OR?: ApiKeyScalarWhereInput[]
+    NOT?: ApiKeyScalarWhereInput | ApiKeyScalarWhereInput[]
+    id?: IntFilter<"ApiKey"> | number
+    name?: StringFilter<"ApiKey"> | string
+    key?: StringFilter<"ApiKey"> | string
+    expirationDate?: DateTimeFilter<"ApiKey"> | Date | string
+    userId?: IntFilter<"ApiKey"> | number
+  }
+
+  export type UserCreateWithoutApiKeysInput = {
     name: string
     password: string
     createdAt?: Date | string
@@ -6132,7 +6063,7 @@ export namespace Prisma {
     receivedTransactions?: TransactionCreateNestedManyWithoutReceiverInput
   }
 
-  export type UserUncheckedCreateWithoutRefreshTokensInput = {
+  export type UserUncheckedCreateWithoutApiKeysInput = {
     id?: number
     name: string
     password: string
@@ -6145,23 +6076,23 @@ export namespace Prisma {
     receivedTransactions?: TransactionUncheckedCreateNestedManyWithoutReceiverInput
   }
 
-  export type UserCreateOrConnectWithoutRefreshTokensInput = {
+  export type UserCreateOrConnectWithoutApiKeysInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutRefreshTokensInput, UserUncheckedCreateWithoutRefreshTokensInput>
+    create: XOR<UserCreateWithoutApiKeysInput, UserUncheckedCreateWithoutApiKeysInput>
   }
 
-  export type UserUpsertWithoutRefreshTokensInput = {
-    update: XOR<UserUpdateWithoutRefreshTokensInput, UserUncheckedUpdateWithoutRefreshTokensInput>
-    create: XOR<UserCreateWithoutRefreshTokensInput, UserUncheckedCreateWithoutRefreshTokensInput>
+  export type UserUpsertWithoutApiKeysInput = {
+    update: XOR<UserUpdateWithoutApiKeysInput, UserUncheckedUpdateWithoutApiKeysInput>
+    create: XOR<UserCreateWithoutApiKeysInput, UserUncheckedCreateWithoutApiKeysInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutRefreshTokensInput = {
+  export type UserUpdateToOneWithWhereWithoutApiKeysInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutRefreshTokensInput, UserUncheckedUpdateWithoutRefreshTokensInput>
+    data: XOR<UserUpdateWithoutApiKeysInput, UserUncheckedUpdateWithoutApiKeysInput>
   }
 
-  export type UserUpdateWithoutRefreshTokensInput = {
+  export type UserUpdateWithoutApiKeysInput = {
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6173,7 +6104,7 @@ export namespace Prisma {
     receivedTransactions?: TransactionUpdateManyWithoutReceiverNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutRefreshTokensInput = {
+  export type UserUncheckedUpdateWithoutApiKeysInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -6194,8 +6125,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
-    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
     receivedTransactions?: TransactionCreateNestedManyWithoutReceiverInput
+    apiKeys?: ApiKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSentTransactionsInput = {
@@ -6207,8 +6138,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
-    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
     receivedTransactions?: TransactionUncheckedCreateNestedManyWithoutReceiverInput
+    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSentTransactionsInput = {
@@ -6224,8 +6155,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
-    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
     sentTransactions?: TransactionCreateNestedManyWithoutSenderInput
+    apiKeys?: ApiKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReceivedTransactionsInput = {
@@ -6237,8 +6168,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
-    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
     sentTransactions?: TransactionUncheckedCreateNestedManyWithoutSenderInput
+    apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReceivedTransactionsInput = {
@@ -6265,8 +6196,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
-    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
     receivedTransactions?: TransactionUpdateManyWithoutReceiverNestedInput
+    apiKeys?: ApiKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentTransactionsInput = {
@@ -6278,8 +6209,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
-    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
     receivedTransactions?: TransactionUncheckedUpdateManyWithoutReceiverNestedInput
+    apiKeys?: ApiKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutReceivedTransactionsInput = {
@@ -6301,8 +6232,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
-    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
     sentTransactions?: TransactionUpdateManyWithoutSenderNestedInput
+    apiKeys?: ApiKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedTransactionsInput = {
@@ -6314,16 +6245,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
-    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
     sentTransactions?: TransactionUncheckedUpdateManyWithoutSenderNestedInput
-  }
-
-  export type RefreshTokenCreateManyUserInput = {
-    id?: number
-    hashedToken: string
-    revoked?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    apiKeys?: ApiKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TransactionCreateManySenderInput = {
@@ -6348,27 +6271,11 @@ export namespace Prisma {
     status?: $Enums.TransactionStatus
   }
 
-  export type RefreshTokenUpdateWithoutUserInput = {
-    hashedToken?: StringFieldUpdateOperationsInput | string
-    revoked?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type RefreshTokenUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    hashedToken?: StringFieldUpdateOperationsInput | string
-    revoked?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type RefreshTokenUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    hashedToken?: StringFieldUpdateOperationsInput | string
-    revoked?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type ApiKeyCreateManyUserInput = {
+    id?: number
+    name: string
+    key: string
+    expirationDate: Date | string
   }
 
   export type TransactionUpdateWithoutSenderInput = {
@@ -6433,6 +6340,26 @@ export namespace Prisma {
     senderNote?: StringFieldUpdateOperationsInput | string
     receiverNote?: StringFieldUpdateOperationsInput | string
     status?: EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  }
+
+  export type ApiKeyUpdateWithoutUserInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    expirationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiKeyUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    expirationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApiKeyUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    expirationDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

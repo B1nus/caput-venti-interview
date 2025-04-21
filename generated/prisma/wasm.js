@@ -125,13 +125,12 @@ exports.Prisma.UserScalarFieldEnum = {
   privateKey: 'privateKey'
 };
 
-exports.Prisma.RefreshTokenScalarFieldEnum = {
+exports.Prisma.ApiKeyScalarFieldEnum = {
   id: 'id',
-  hashedToken: 'hashedToken',
-  userId: 'userId',
-  revoked: 'revoked',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  name: 'name',
+  key: 'key',
+  expirationDate: 'expirationDate',
+  userId: 'userId'
 };
 
 exports.Prisma.TransactionScalarFieldEnum = {
@@ -174,7 +173,7 @@ exports.TransactionStatus = exports.$Enums.TransactionStatus = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  RefreshToken: 'RefreshToken',
+  ApiKey: 'ApiKey',
   Transaction: 'Transaction'
 };
 

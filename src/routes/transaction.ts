@@ -18,6 +18,8 @@ export const transactionRouter = express.Router();
  *     summary: Sends a transaction to another user
  *     description: This endpoint allows a user to send a transaction to another user. The transaction includes an amount, currency, and notes for both the sender and the receiver.
  *     tags: [Auth]
+ *     security:
+ *      - Authorization: []
  *     requestBody:
  *       description: Transaction data
  *       required: true
@@ -198,6 +200,8 @@ async function formatTransaction(
  *     summary: Retrieves a list of all transactions for the authenticated user
  *     description: This endpoint returns a list of transactions (both sent and received) for the authenticated user.
  *     tags: [Auth]
+ *     security:
+ *      - Authorization: []
  *     responses:
  *       200:
  *         description: List of transactions
@@ -269,6 +273,8 @@ transactionRouter.get(
  *     summary: Retrieves a list of transactions with decrypted notes for the authenticated user
  *     description: This endpoint retrieves transactions for the authenticated user and decrypts the transaction notes using a passphrase.
  *     tags: [Auth]
+ *     security:
+ *      - Authorization: []
  *     requestBody:
  *       description: Passphrase for decrypting transaction notes
  *       required: true
