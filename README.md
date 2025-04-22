@@ -1,5 +1,5 @@
 # secure api implementation
-Start the backend by running `npx tsx app.ts` while in the `./src` directory. You can see documentation for the api at <https://localhost:3000/api-docs> in a browser of your choice.
+Install the packages using `npm install` in the root directory and start the backend by running `npx tsx app.ts` while in the `./src` directory. You can see documentation for the api at <https://localhost:3000/api-docs> in a browser of your choice.
 
 This is my first time using javascript/typescript to make a webserver. It's easy to see why many people use this to write webservers when the ecosystem is so mature and helpful. express, prisma, express-validator, express-api-limiter, swagger, winston, they are all super easy to use and cut down on development time.
 
