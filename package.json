@@ -20,11 +20,15 @@
   "dependencies": {
     "@prisma/client": "^6.6.0",
     "bcrypt": "^5.1.1",
+    "crypt-js": "^1.0.4",
+    "crypto-js": "^4.2.0",
     "express": "^5.1.0",
     "express-rate-limit": "^7.5.0",
     "express-validator": "^7.2.1",
     "https": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
+    "prompt-sync": "^4.2.0",
+    "speakeasy": "^2.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0"

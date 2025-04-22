@@ -6,6 +6,7 @@ import {
   tokenValidator,
   decryptionValidator,
   passwordValidator,
+  twoFactorValidator,
 } from "../middleware/auth";
 import {
   generateKeyPair,
@@ -22,7 +23,18 @@ export const userRouter = express.Router();
  *   post:
  *     summary: Unregisters a user
  *     description: This endpoint allows a user to unregister by deleting their account from the system. The user must provide a valid token for authentication.
- *     tags: [Auth]
+ *     tags: [Auth, 2FA]
+ *     requestBody:
+ *       description: Password change data
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               code:
+ *                 type: string
+ *                 description: You two-factor authentication code, if any
  *     security:
  *      - Authorization: []
  *     responses:
@@ -33,7 +45,7 @@ export const userRouter = express.Router();
  *       500:
  *         description: Internal server error
  */
-userRouter.post("/unregister", tokenValidator, async (req, res, next) => {
+userRouter.post("/unregister", tokenValidator, decryptionValidator, twoFactorValidator, async (req, res, next) => {
   const { id } = req.user;
   await db.user.delete({ where: { id } });
   res.status(200).end();
@@ -46,7 +58,7 @@ userRouter.post("/unregister", tokenValidator, async (req, res, next) => {
  *   post:
  *     summary: Changes a user's password
  *     description: This endpoint allows a user to change their password. The user must provide their old password, new password, and a valid token. The system will also re-encrypt transaction notes using the new password.
- *     tags: [Auth]
+ *     tags: [Auth, 2FA]
  *     security:
  *      - Authorization: []
  *     requestBody:
@@ -63,6 +75,9 @@ userRouter.post("/unregister", tokenValidator, async (req, res, next) => {
  *               newPassword:
  *                 type: string
  *                 description: The new password to set.
+ *               code:
+ *                 type: string
+ *                 description: You two-factor authentication code, if any
  *             required:
  *               - password
  *               - newPassword
@@ -88,6 +103,7 @@ userRouter.post(
   "/password",
   tokenValidator,
   decryptionValidator,
+  twoFactorValidator,
   passwordValidator("newPassword"),
   async (req, res, next) => {
     const errors = validationResult(req);
@@ -160,4 +176,3 @@ userRouter.post(
   },
 );
 
-// /

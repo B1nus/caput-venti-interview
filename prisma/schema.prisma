@@ -25,6 +25,9 @@ model User {
   receivedTransactions Transaction[] @relation("ReceivedTransactions")
 
   apiKeys ApiKey[] @relation("ApiKeys")
+
+  totp String?
+  totpEnabled Boolean @default(false)
 }
 
 model ApiKey {

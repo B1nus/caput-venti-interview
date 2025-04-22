@@ -1171,6 +1171,8 @@ export namespace Prisma {
     role: $Enums.Role | null
     publicKey: string | null
     privateKey: string | null
+    totp: string | null
+    totpEnabled: boolean | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1182,6 +1184,8 @@ export namespace Prisma {
     role: $Enums.Role | null
     publicKey: string | null
     privateKey: string | null
+    totp: string | null
+    totpEnabled: boolean | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1193,6 +1197,8 @@ export namespace Prisma {
     role: number
     publicKey: number
     privateKey: number
+    totp: number
+    totpEnabled: number
     _all: number
   }
 
@@ -1214,6 +1220,8 @@ export namespace Prisma {
     role?: true
     publicKey?: true
     privateKey?: true
+    totp?: true
+    totpEnabled?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1225,6 +1233,8 @@ export namespace Prisma {
     role?: true
     publicKey?: true
     privateKey?: true
+    totp?: true
+    totpEnabled?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1236,6 +1246,8 @@ export namespace Prisma {
     role?: true
     publicKey?: true
     privateKey?: true
+    totp?: true
+    totpEnabled?: true
     _all?: true
   }
 
@@ -1334,6 +1346,8 @@ export namespace Prisma {
     role: $Enums.Role
     publicKey: string
     privateKey: string
+    totp: string | null
+    totpEnabled: boolean
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1364,6 +1378,8 @@ export namespace Prisma {
     role?: boolean
     publicKey?: boolean
     privateKey?: boolean
+    totp?: boolean
+    totpEnabled?: boolean
     sentTransactions?: boolean | User$sentTransactionsArgs<ExtArgs>
     receivedTransactions?: boolean | User$receivedTransactionsArgs<ExtArgs>
     apiKeys?: boolean | User$apiKeysArgs<ExtArgs>
@@ -1379,6 +1395,8 @@ export namespace Prisma {
     role?: boolean
     publicKey?: boolean
     privateKey?: boolean
+    totp?: boolean
+    totpEnabled?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1390,6 +1408,8 @@ export namespace Prisma {
     role?: boolean
     publicKey?: boolean
     privateKey?: boolean
+    totp?: boolean
+    totpEnabled?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1401,9 +1421,11 @@ export namespace Prisma {
     role?: boolean
     publicKey?: boolean
     privateKey?: boolean
+    totp?: boolean
+    totpEnabled?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "password" | "createdAt" | "updatedAt" | "role" | "publicKey" | "privateKey", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "password" | "createdAt" | "updatedAt" | "role" | "publicKey" | "privateKey" | "totp" | "totpEnabled", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sentTransactions?: boolean | User$sentTransactionsArgs<ExtArgs>
     receivedTransactions?: boolean | User$receivedTransactionsArgs<ExtArgs>
@@ -1429,6 +1451,8 @@ export namespace Prisma {
       role: $Enums.Role
       publicKey: string
       privateKey: string
+      totp: string | null
+      totpEnabled: boolean
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1863,6 +1887,8 @@ export namespace Prisma {
     readonly role: FieldRef<"User", 'Role'>
     readonly publicKey: FieldRef<"User", 'String'>
     readonly privateKey: FieldRef<"User", 'String'>
+    readonly totp: FieldRef<"User", 'String'>
+    readonly totpEnabled: FieldRef<"User", 'Boolean'>
   }
     
 
@@ -4648,7 +4674,9 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     role: 'role',
     publicKey: 'publicKey',
-    privateKey: 'privateKey'
+    privateKey: 'privateKey',
+    totp: 'totp',
+    totpEnabled: 'totpEnabled'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -4730,6 +4758,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Currency'
    */
   export type EnumCurrencyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Currency'>
@@ -4765,6 +4800,8 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     publicKey?: StringFilter<"User"> | string
     privateKey?: StringFilter<"User"> | string
+    totp?: StringNullableFilter<"User"> | string | null
+    totpEnabled?: BoolFilter<"User"> | boolean
     sentTransactions?: TransactionListRelationFilter
     receivedTransactions?: TransactionListRelationFilter
     apiKeys?: ApiKeyListRelationFilter
@@ -4779,6 +4816,8 @@ export namespace Prisma {
     role?: SortOrder
     publicKey?: SortOrder
     privateKey?: SortOrder
+    totp?: SortOrderInput | SortOrder
+    totpEnabled?: SortOrder
     sentTransactions?: TransactionOrderByRelationAggregateInput
     receivedTransactions?: TransactionOrderByRelationAggregateInput
     apiKeys?: ApiKeyOrderByRelationAggregateInput
@@ -4796,6 +4835,8 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     publicKey?: StringFilter<"User"> | string
     privateKey?: StringFilter<"User"> | string
+    totp?: StringNullableFilter<"User"> | string | null
+    totpEnabled?: BoolFilter<"User"> | boolean
     sentTransactions?: TransactionListRelationFilter
     receivedTransactions?: TransactionListRelationFilter
     apiKeys?: ApiKeyListRelationFilter
@@ -4810,6 +4851,8 @@ export namespace Prisma {
     role?: SortOrder
     publicKey?: SortOrder
     privateKey?: SortOrder
+    totp?: SortOrderInput | SortOrder
+    totpEnabled?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -4829,6 +4872,8 @@ export namespace Prisma {
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     publicKey?: StringWithAggregatesFilter<"User"> | string
     privateKey?: StringWithAggregatesFilter<"User"> | string
+    totp?: StringNullableWithAggregatesFilter<"User"> | string | null
+    totpEnabled?: BoolWithAggregatesFilter<"User"> | boolean
   }
 
   export type ApiKeyWhereInput = {
@@ -4976,6 +5021,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
+    totp?: string | null
+    totpEnabled?: boolean
     sentTransactions?: TransactionCreateNestedManyWithoutSenderInput
     receivedTransactions?: TransactionCreateNestedManyWithoutReceiverInput
     apiKeys?: ApiKeyCreateNestedManyWithoutUserInput
@@ -4990,6 +5037,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
+    totp?: string | null
+    totpEnabled?: boolean
     sentTransactions?: TransactionUncheckedCreateNestedManyWithoutSenderInput
     receivedTransactions?: TransactionUncheckedCreateNestedManyWithoutReceiverInput
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutUserInput
@@ -5003,6 +5052,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
+    totp?: NullableStringFieldUpdateOperationsInput | string | null
+    totpEnabled?: BoolFieldUpdateOperationsInput | boolean
     sentTransactions?: TransactionUpdateManyWithoutSenderNestedInput
     receivedTransactions?: TransactionUpdateManyWithoutReceiverNestedInput
     apiKeys?: ApiKeyUpdateManyWithoutUserNestedInput
@@ -5017,6 +5068,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
+    totp?: NullableStringFieldUpdateOperationsInput | string | null
+    totpEnabled?: BoolFieldUpdateOperationsInput | boolean
     sentTransactions?: TransactionUncheckedUpdateManyWithoutSenderNestedInput
     receivedTransactions?: TransactionUncheckedUpdateManyWithoutReceiverNestedInput
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -5031,6 +5084,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
+    totp?: string | null
+    totpEnabled?: boolean
   }
 
   export type UserUpdateManyMutationInput = {
@@ -5041,6 +5096,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
+    totp?: NullableStringFieldUpdateOperationsInput | string | null
+    totpEnabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -5052,6 +5109,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
+    totp?: NullableStringFieldUpdateOperationsInput | string | null
+    totpEnabled?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ApiKeyCreateInput = {
@@ -5228,6 +5287,25 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type TransactionListRelationFilter = {
     every?: TransactionWhereInput
     some?: TransactionWhereInput
@@ -5238,6 +5316,11 @@ export namespace Prisma {
     every?: ApiKeyWhereInput
     some?: ApiKeyWhereInput
     none?: ApiKeyWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type TransactionOrderByRelationAggregateInput = {
@@ -5257,6 +5340,8 @@ export namespace Prisma {
     role?: SortOrder
     publicKey?: SortOrder
     privateKey?: SortOrder
+    totp?: SortOrder
+    totpEnabled?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -5272,6 +5357,8 @@ export namespace Prisma {
     role?: SortOrder
     publicKey?: SortOrder
     privateKey?: SortOrder
+    totp?: SortOrder
+    totpEnabled?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -5283,6 +5370,8 @@ export namespace Prisma {
     role?: SortOrder
     publicKey?: SortOrder
     privateKey?: SortOrder
+    totp?: SortOrder
+    totpEnabled?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -5344,6 +5433,31 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type UserScalarRelationFilter = {
@@ -5413,11 +5527,6 @@ export namespace Prisma {
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type TransactionCountOrderByAggregateInput = {
@@ -5556,6 +5665,14 @@ export namespace Prisma {
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type TransactionUpdateManyWithoutSenderNestedInput = {
@@ -5755,6 +5872,25 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -5823,11 +5959,21 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
-  export type NestedEnumCurrencyFilter<$PrismaModel = never> = {
-    equals?: $Enums.Currency | EnumCurrencyFieldRefInput<$PrismaModel>
-    in?: $Enums.Currency[]
-    notIn?: $Enums.Currency[]
-    not?: NestedEnumCurrencyFilter<$PrismaModel> | $Enums.Currency
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
@@ -5839,6 +5985,21 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCurrencyFilter<$PrismaModel = never> = {
+    equals?: $Enums.Currency | EnumCurrencyFieldRefInput<$PrismaModel>
+    in?: $Enums.Currency[]
+    notIn?: $Enums.Currency[]
+    not?: NestedEnumCurrencyFilter<$PrismaModel> | $Enums.Currency
   }
 
   export type NestedEnumTransactionStatusFilter<$PrismaModel = never> = {
@@ -6059,6 +6220,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
+    totp?: string | null
+    totpEnabled?: boolean
     sentTransactions?: TransactionCreateNestedManyWithoutSenderInput
     receivedTransactions?: TransactionCreateNestedManyWithoutReceiverInput
   }
@@ -6072,6 +6235,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
+    totp?: string | null
+    totpEnabled?: boolean
     sentTransactions?: TransactionUncheckedCreateNestedManyWithoutSenderInput
     receivedTransactions?: TransactionUncheckedCreateNestedManyWithoutReceiverInput
   }
@@ -6100,6 +6265,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
+    totp?: NullableStringFieldUpdateOperationsInput | string | null
+    totpEnabled?: BoolFieldUpdateOperationsInput | boolean
     sentTransactions?: TransactionUpdateManyWithoutSenderNestedInput
     receivedTransactions?: TransactionUpdateManyWithoutReceiverNestedInput
   }
@@ -6113,6 +6280,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
+    totp?: NullableStringFieldUpdateOperationsInput | string | null
+    totpEnabled?: BoolFieldUpdateOperationsInput | boolean
     sentTransactions?: TransactionUncheckedUpdateManyWithoutSenderNestedInput
     receivedTransactions?: TransactionUncheckedUpdateManyWithoutReceiverNestedInput
   }
@@ -6125,6 +6294,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
+    totp?: string | null
+    totpEnabled?: boolean
     receivedTransactions?: TransactionCreateNestedManyWithoutReceiverInput
     apiKeys?: ApiKeyCreateNestedManyWithoutUserInput
   }
@@ -6138,6 +6309,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
+    totp?: string | null
+    totpEnabled?: boolean
     receivedTransactions?: TransactionUncheckedCreateNestedManyWithoutReceiverInput
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutUserInput
   }
@@ -6155,6 +6328,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
+    totp?: string | null
+    totpEnabled?: boolean
     sentTransactions?: TransactionCreateNestedManyWithoutSenderInput
     apiKeys?: ApiKeyCreateNestedManyWithoutUserInput
   }
@@ -6168,6 +6343,8 @@ export namespace Prisma {
     role?: $Enums.Role
     publicKey: string
     privateKey: string
+    totp?: string | null
+    totpEnabled?: boolean
     sentTransactions?: TransactionUncheckedCreateNestedManyWithoutSenderInput
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutUserInput
   }
@@ -6196,6 +6373,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
+    totp?: NullableStringFieldUpdateOperationsInput | string | null
+    totpEnabled?: BoolFieldUpdateOperationsInput | boolean
     receivedTransactions?: TransactionUpdateManyWithoutReceiverNestedInput
     apiKeys?: ApiKeyUpdateManyWithoutUserNestedInput
   }
@@ -6209,6 +6388,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
+    totp?: NullableStringFieldUpdateOperationsInput | string | null
+    totpEnabled?: BoolFieldUpdateOperationsInput | boolean
     receivedTransactions?: TransactionUncheckedUpdateManyWithoutReceiverNestedInput
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -6232,6 +6413,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
+    totp?: NullableStringFieldUpdateOperationsInput | string | null
+    totpEnabled?: BoolFieldUpdateOperationsInput | boolean
     sentTransactions?: TransactionUpdateManyWithoutSenderNestedInput
     apiKeys?: ApiKeyUpdateManyWithoutUserNestedInput
   }
@@ -6245,6 +6428,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     publicKey?: StringFieldUpdateOperationsInput | string
     privateKey?: StringFieldUpdateOperationsInput | string
+    totp?: NullableStringFieldUpdateOperationsInput | string | null
+    totpEnabled?: BoolFieldUpdateOperationsInput | boolean
     sentTransactions?: TransactionUncheckedUpdateManyWithoutSenderNestedInput
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutUserNestedInput
   }

@@ -6,6 +6,7 @@ import {
   loginValidator,
   tokenValidator,
   decryptionValidator,
+  twoFactorValidator,
 } from "../middleware/auth";
 import { encryptBase64, decryptBase64 } from "../crypto";
 
@@ -74,6 +75,7 @@ transactionRouter.post(
   "/send",
   tokenValidator,
   decryptionValidator,
+  twoFactorValidator,
   [
     check("receiver")
       .exists()
@@ -332,6 +334,7 @@ transactionRouter.get(
   "/transactions/decrypt",
   tokenValidator,
   decryptionValidator,
+  twoFactorValidator,
   async (req, res, next) => {
     const { password } = req.body;
 

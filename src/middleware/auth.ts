@@ -1,6 +1,6 @@
 import { check } from "express-validator";
 import { db } from "../db";
-import { checkPassword, verifyJwtToken, hashApiKey } from "../crypto";
+import { checkPassword, verifyJwtToken, hashText, verify2FA, decrypt } from "../crypto";
 
 export const decryptionValidator = async (req, res, next) => {
   const passwordResult = await passwordValidator("password").run(req);
@@ -90,7 +90,7 @@ export const tokenValidator = async (req, res, next) => {
   if (split[0] == "ApiKey") {
     const key = await db.apiKey.findUnique({
       where: {
-        key: hashApiKey(token),
+        key: hashText(token),
       },
     });
     if (!key) {
@@ -111,6 +111,41 @@ export const tokenValidator = async (req, res, next) => {
     next();
   }
 };
+
+export const twoFactorValidator = async (req, res, next) => {
+  if (req.user.totpEnabled) {
+    const codeValidatorResult = await codeValidator("code").run(req);
+    if (!codeValidatorResult.isEmpty()) {
+      return res.status(400).json({ error: codeValidatorResult.array().map(x => x.msg) });
+    }
+
+    if (!req.user.totp) {
+      return res.status(400).json({ error: "Missing time-based one-time password" });
+    }
+
+    const { code }  = req.body;
+    const totp = decrypt(req.user.totp);
+
+    if (verify2FA(totp, code)) {
+      return next();
+    } else {
+      return res.status(400).json({ error: "Wrong two-factor authentication code" });
+    }
+  } else {
+    next();
+  }
+};
+
+export function codeValidator(field: string) {
+  return check(field)
+    .exists()
+    .notEmpty()
+    .withMessage(`${field} cannot be empty`)
+    .isInt()
+    .withMessage(`${field} has to be an integer`)
+    .trim()
+    .escape();
+}
 
 export function nameValidator(field: string) {
   return check(field)

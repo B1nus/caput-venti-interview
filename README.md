@@ -5,6 +5,23 @@ This is my first time using javascript/typescript to make a webserver. It's easy
 
 I've done my best to follow SOC and other reasonable design patterns for code organisation. For example by only importing crypto, bcrypt and jsonwebtoken in `./crypto.ts` so you can be sure that all encryption, decryption and hashing occurs in those functions.
 
+# overview
+`prisma/schema.prisma`: The model for the database
+`cert`: Certificates for https. (should not be included in the repo in a real world scenario)
+`audiot.log`: The audit file with simple logging of all routes and when they are accessed
+`src/app.ts`: The executable program
+`src/crypto.ts`: Collection of functions to encrypt, decrypt and hash. It's the only file where i import `crypto`, `becrypt` and `jsonwebtoken`
+`src/db.ts`: Where I import the prisma database
+`src/middleware/auth.ts`: Validator for passwords, names, jwt tokens and authenticator codes
+`src/middleware/json.ts`: Custom json validator for more graceful error handling
+`src/middleware/logger.ts`: Logger middleware, put before and routes you want to log
+`src/middleware/role.ts`: Role validator. Put it before ane routes you wan't to restrict along with the allowed roles
+`src/routes/admin.ts`: Admin routes
+`src/routes/api.ts`: Routes regarding api keys
+`src/routes/auth.ts`: Routes regarding authentication, registering and two-factor authentication
+`src/routes/transaction.ts`: Routes regarding transactions
+`src/routes/user.ts`: Routes regarding users
+
 # security considerations
 I'm using simple integers for id's for the transactions and users. It could be more secure to use another method which hides the order of creation of users and transactions, but I opted for simple integers for it's simplicity and performance.
 
@@ -20,12 +37,18 @@ I am unsure if my method for storing api keys is secure. I would assume it is sa
 
 I made sure to make all routes for operating on the api keys require a password. This way, somebody with a working api key cannot get more api key's for example.
 
+The storage of one-time two-factor authentication codes is not very secure. I know there is a better way. I simply encrypt the one-time password with aes with a global secret stored in the `.env` file. An attacker with access to this secret and the database will be able to get any users authenticator codes. They won't be able to login with only two-factor authentication codes, but they are closer to gaining full access to a users account.
+
 # what I would improve with more time
 I would switch to MySQL instead of sqlite. Thanks to prisma that shouldn't be too hard.
 
 More granular control over API keys so you can easily revokw acces to a specific route for a specific key for example.
 
 A backup for 2FA if the user loses their phone.
+
+More user routes.
+
+Admin routes.
 
 The audit logging system is very basic. A more fleshed audit log would have rules for each route where you can selectively hide and show certain data. To for example hide the jwt token and passwords but include the fact that the request succeded.
 

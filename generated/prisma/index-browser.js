@@ -122,7 +122,9 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
   role: 'role',
   publicKey: 'publicKey',
-  privateKey: 'privateKey'
+  privateKey: 'privateKey',
+  totp: 'totp',
+  totpEnabled: 'totpEnabled'
 };
 
 exports.Prisma.ApiKeyScalarFieldEnum = {

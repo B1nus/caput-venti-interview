@@ -2,8 +2,8 @@ import express from "express";
 import { validationResult, check, param } from "express-validator";
 import { roleValidator } from "../middleware/role";
 import { Role } from "../../generated/prisma/client";
-import { tokenValidator, decryptionValidator } from "../middleware/auth";
-import { createApiKey, hashApiKey } from "../crypto";
+import { tokenValidator, decryptionValidator, twoFactorValidator } from "../middleware/auth";
+import { createApiKey, hashText } from "../crypto";
 import { db } from "../db";
 
 export const apiRouter = express.Router();
@@ -72,7 +72,7 @@ apiRouter.get(
  *   post:
  *     summary: Create a new API Key
  *     description: Allows a user to create a new API key with a specified expiration time and name.
- *     tags: [Auth]
+ *     tags: [Auth, 2FA]
  *     security:
  *      - Authorization: []
  *     requestBody:
@@ -95,6 +95,9 @@ apiRouter.get(
  *               password:
  *                 type: string
  *                 description: Password for the user creating the API key
+ *               code:
+ *                 type: string
+ *                 description: You two-factor authentication code, if any
  *     responses:
  *       200:
  *         description: Successfully created a new API key
@@ -112,6 +115,7 @@ apiRouter.post(
   "/create-api-key",
   tokenValidator,
   decryptionValidator,
+  twoFactorValidator,
   roleValidator(Role.USER),
   check("time")
     .exists()
@@ -133,7 +137,7 @@ apiRouter.post(
     }
 
     const apiKey = createApiKey();
-    const hashedApiKey = hashApiKey(apiKey);
+    const hashedApiKey = hashText(apiKey);
     const { name, time } = req.body;
     var expirationDate = new Date();
     expirationDate.setSeconds(expirationDate.getSeconds() + time);
@@ -158,7 +162,7 @@ apiRouter.post(
  *     summary: Remove an API Key
  *     description: |
  *       Allows a user to delete an API key by its ID.
- *     tags: [Auth]
+ *     tags: [Auth, 2FA]
  *     security:
  *      - Authorization: []
  *     requestBody:
@@ -170,9 +174,12 @@ apiRouter.post(
  *             required:
  *               - password
  *             properties:
- *               name:
+ *               password:
  *                 type: string
- *                 description: Name of the API key
+ *                 description: The password of the user owning the api key
+ *               code:
+ *                 type: string
+ *                 description: You two-factor authentication code, if any
  *     parameters:
  *       - in: path
  *         name: keyId
@@ -190,6 +197,7 @@ apiRouter.post(
   "/remove-api-key/:keyId",
   tokenValidator,
   decryptionValidator,
+  twoFactorValidator,
   roleValidator(Role.USER),
   param("keyId")
     .exists()

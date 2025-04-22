@@ -341,3 +341,12 @@
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","status":200,"url":"/api-keys"},"timestamp":"2025-04-21T10:08:01.382Z"}
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":400,"url":"/remove-api-key/1"},"timestamp":"2025-04-21T10:08:12.203Z"}
 {"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","status":200,"url":"/api-keys"},"timestamp":"2025-04-21T10:08:33.493Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":200,"url":"/login"},"timestamp":"2025-04-22T06:30:49.466Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":400,"url":"/generate-2fa"},"timestamp":"2025-04-22T06:32:23.772Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":200,"url":"/login"},"timestamp":"2025-04-22T06:32:47.988Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":400,"url":"/generate-2fa"},"timestamp":"2025-04-22T06:33:02.486Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":200,"url":"/generate-2fa"},"timestamp":"2025-04-22T06:33:08.210Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":400,"url":"/login"},"timestamp":"2025-04-22T06:36:33.146Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":400,"url":"/login"},"timestamp":"2025-04-22T06:37:43.478Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":400,"url":"/login"},"timestamp":"2025-04-22T06:37:45.566Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"POST","status":200,"url":"/login"},"timestamp":"2025-04-22T06:37:53.164Z"}
