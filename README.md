@@ -1,26 +1,26 @@
 # secure api implementation
-Start the backend by running `npx tsx app.ts` while in the `./src` directory. You can see documentation for the api at `https://localhost:3000/api-docs` in a browser of your choice.
+Start the backend by running `npx tsx app.ts` while in the `./src` directory. You can see documentation for the api at <https://localhost:3000/api-docs> in a browser of your choice.
 
 This is my first time using javascript/typescript to make a webserver. It's easy to see why many people use this to write webservers when the ecosystem is so mature and helpful. express, prisma, express-validator, express-api-limiter, swagger, winston, they are all super easy to use and cut down on development time.
 
 I've done my best to follow SOC and other reasonable design patterns for code organisation. For example by only importing crypto, bcrypt and jsonwebtoken in `./crypto.ts` so you can be sure that all encryption, decryption and hashing occurs in those functions.
 
 # overview
-`prisma/schema.prisma`: The model for the database
-`cert`: Certificates for https. (should not be included in the repo in a real world scenario)
-`audiot.log`: The audit file with simple logging of all routes and when they are accessed
-`src/app.ts`: The executable program
-`src/crypto.ts`: Collection of functions to encrypt, decrypt and hash. It's the only file where i import `crypto`, `becrypt` and `jsonwebtoken`
-`src/db.ts`: Where I import the prisma database
-`src/middleware/auth.ts`: Validator for passwords, names, jwt tokens and authenticator codes
-`src/middleware/json.ts`: Custom json validator for more graceful error handling
-`src/middleware/logger.ts`: Logger middleware, put before and routes you want to log
-`src/middleware/role.ts`: Role validator. Put it before ane routes you wan't to restrict along with the allowed roles
-`src/routes/admin.ts`: Admin routes
-`src/routes/api.ts`: Routes regarding api keys
-`src/routes/auth.ts`: Routes regarding authentication, registering and two-factor authentication
-`src/routes/transaction.ts`: Routes regarding transactions
-`src/routes/user.ts`: Routes regarding users
+- `prisma/schema.prisma`: The model for the database
+- `cert`: Certificates for https. (should not be included in the repo in a real world scenario)
+- `audiot.log`: The audit file with simple logging of all routes and when they are accessed
+- `src/app.ts`: The executable program
+- `src/crypto.ts`: Collection of functions to encrypt, decrypt and hash. The only place I import `crypto`, `becrypt` and `jsonwebtoken`
+- `src/db.ts`: Where I import the prisma database
+- `src/middleware/auth.ts`: Validator for passwords, names, jwt tokens and authenticator codes
+- `src/middleware/json.ts`: Custom json validator for more graceful error handling
+- `src/middleware/logger.ts`: Logger middleware, put before and routes you want to log
+- `src/middleware/role.ts`: Role validator. Put it before ane routes you wan't to restrict along with the allowed roles
+- `src/routes/admin.ts`: Admin routes
+- `src/routes/api.ts`: Routes regarding api keys
+- `src/routes/auth.ts`: Routes regarding authentication, registering and two-factor authentication
+- `src/routes/transaction.ts`: Routes regarding transactions
+- `src/routes/user.ts`: Routes regarding users
 
 # security considerations
 I'm using simple integers for id's for the transactions and users. It could be more secure to use another method which hides the order of creation of users and transactions, but I opted for simple integers for it's simplicity and performance.
