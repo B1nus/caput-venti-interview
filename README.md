@@ -42,6 +42,8 @@ The storage of one-time two-factor authentication codes is not very secure. I kn
 # what I would improve with more time
 I would switch to MySQL instead of sqlite. Thanks to prisma that shouldn't be too hard.
 
+Think a bit more about route naming.
+
 More granular control over API keys so you can easily revoke access to a specific route for a specific key for example. Right now the only route you can access with the API keys is `/transactions`.
 
 A backup for 2FA if the user loses their phone.
